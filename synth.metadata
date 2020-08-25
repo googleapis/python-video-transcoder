@@ -3,8 +3,8 @@
     {
       "git": {
         "name": ".",
-        "remote": "sso://devrel/cloud/libraries/python/python-video-transcoder",
-        "sha": "d83d277c4513cf6c1caaf56ca3a6564cd5910c86"
+        "remote": "https://github.com/googleapis/python-video-transcoder.git",
+        "sha": "845f1e371cc45040c882b725e12375430260e45a"
       }
     },
     {
