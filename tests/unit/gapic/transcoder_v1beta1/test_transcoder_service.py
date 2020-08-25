@@ -847,8 +847,8 @@ def test_list_jobs_pages():
             RuntimeError,
         )
         pages = list(client.list_jobs(request={}).pages)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
@@ -904,10 +904,10 @@ async def test_list_jobs_async_pages():
             RuntimeError,
         )
         pages = []
-        async for page in (await client.list_jobs(request={})).pages:
-            pages.append(page)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        async for page_ in (await client.list_jobs(request={})).pages:
+            pages.append(page_)
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 def test_get_job(transport: str = "grpc", request_type=services.GetJobRequest):
@@ -1804,8 +1804,8 @@ def test_list_job_templates_pages():
             RuntimeError,
         )
         pages = list(client.list_job_templates(request={}).pages)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
@@ -1877,10 +1877,10 @@ async def test_list_job_templates_async_pages():
             RuntimeError,
         )
         pages = []
-        async for page in (await client.list_job_templates(request={})).pages:
-            pages.append(page)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        async for page_ in (await client.list_job_templates(request={})).pages:
+            pages.append(page_)
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 def test_get_job_template(
@@ -2613,31 +2613,6 @@ def test_transcoder_service_grpc_asyncio_transport_channel_mtls_with_adc(
         assert transport.grpc_channel == mock_grpc_channel
 
 
-def test_job_template_path():
-    project = "squid"
-    location = "clam"
-    job_template = "whelk"
-
-    expected = "projects/{project}/locations/{location}/jobTemplates/{job_template}".format(
-        project=project, location=location, job_template=job_template,
-    )
-    actual = TranscoderServiceClient.job_template_path(project, location, job_template)
-    assert expected == actual
-
-
-def test_parse_job_template_path():
-    expected = {
-        "project": "octopus",
-        "location": "oyster",
-        "job_template": "nudibranch",
-    }
-    path = TranscoderServiceClient.job_template_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = TranscoderServiceClient.parse_job_template_path(path)
-    assert expected == actual
-
-
 def test_job_path():
     project = "squid"
     location = "clam"
@@ -2660,6 +2635,31 @@ def test_parse_job_path():
 
     # Check that the path construction is reversible.
     actual = TranscoderServiceClient.parse_job_path(path)
+    assert expected == actual
+
+
+def test_job_template_path():
+    project = "squid"
+    location = "clam"
+    job_template = "whelk"
+
+    expected = "projects/{project}/locations/{location}/jobTemplates/{job_template}".format(
+        project=project, location=location, job_template=job_template,
+    )
+    actual = TranscoderServiceClient.job_template_path(project, location, job_template)
+    assert expected == actual
+
+
+def test_parse_job_template_path():
+    expected = {
+        "project": "octopus",
+        "location": "oyster",
+        "job_template": "nudibranch",
+    }
+    path = TranscoderServiceClient.job_template_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = TranscoderServiceClient.parse_job_template_path(path)
     assert expected == actual
 
 
