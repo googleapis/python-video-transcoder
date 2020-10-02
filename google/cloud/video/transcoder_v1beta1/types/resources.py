@@ -390,7 +390,7 @@ class Manifest(proto.Message):
             The name of the generated file. The default is ``"master"``
             with the extension suffix corresponding to the
             ``Manifest.type``.
-        type (~.resources.Manifest.ManifestType):
+        type_ (~.resources.Manifest.ManifestType):
             Required. Type of the manifest, can be "HLS"
             or "DASH".
         mux_streams (Sequence[str]):
@@ -410,7 +410,7 @@ class Manifest(proto.Message):
 
     file_name = proto.Field(proto.STRING, number=1)
 
-    type = proto.Field(proto.ENUM, number=2, enum=ManifestType,)
+    type_ = proto.Field(proto.ENUM, number=2, enum=ManifestType,)
 
     mux_streams = proto.RepeatedField(proto.STRING, number=3)
 
@@ -432,7 +432,7 @@ class SpriteSheet(proto.Message):
     r"""Sprite sheet configuration.
 
     Attributes:
-        format (str):
+        format_ (str):
             Format type. The default is ``"jpeg"``.
 
             Supported formats:
@@ -476,7 +476,7 @@ class SpriteSheet(proto.Message):
             Specify the interval value in seconds.
     """
 
-    format = proto.Field(proto.STRING, number=1)
+    format_ = proto.Field(proto.STRING, number=1)
 
     file_prefix = proto.Field(proto.STRING, number=2)
 
