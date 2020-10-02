@@ -44,6 +44,7 @@ from google.cloud.video.transcoder_v1beta1.types import resources
 from google.cloud.video.transcoder_v1beta1.types import services
 from google.oauth2 import service_account
 from google.protobuf import duration_pb2 as duration  # type: ignore
+from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 def client_cert_source_callback():

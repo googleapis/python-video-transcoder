@@ -31,6 +31,7 @@ from google.oauth2 import service_account  # type: ignore
 from google.cloud.video.transcoder_v1beta1.services.transcoder_service import pagers
 from google.cloud.video.transcoder_v1beta1.types import resources
 from google.cloud.video.transcoder_v1beta1.types import services
+from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 from .transports.base import TranscoderServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import TranscoderServiceGrpcAsyncIOTransport
@@ -441,7 +442,8 @@ class TranscoderServiceAsyncClient:
                 resource name.
 
                 This value should be 4-63 characters, and valid
-                characters are ``/[a-zA-Z0-9_-_]/``.
+                characters must match the regular expression
+                ``[a-zA-Z][a-zA-Z0-9_-]*``.
                 This corresponds to the ``job_template_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
