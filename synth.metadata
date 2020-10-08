@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-video-transcoder.git",
-        "sha": "845f1e371cc45040c882b725e12375430260e45a"
+        "sha": "89682e93952608ceb4ac7aa096d6b53e26fc6b93"
       }
     },
     {
