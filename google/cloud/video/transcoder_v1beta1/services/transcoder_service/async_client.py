@@ -60,8 +60,46 @@ class TranscoderServiceAsyncClient:
         TranscoderServiceClient.parse_job_template_path
     )
 
+    common_billing_account_path = staticmethod(
+        TranscoderServiceClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        TranscoderServiceClient.parse_common_billing_account_path
+    )
+
+    common_folder_path = staticmethod(TranscoderServiceClient.common_folder_path)
+    parse_common_folder_path = staticmethod(
+        TranscoderServiceClient.parse_common_folder_path
+    )
+
+    common_organization_path = staticmethod(
+        TranscoderServiceClient.common_organization_path
+    )
+    parse_common_organization_path = staticmethod(
+        TranscoderServiceClient.parse_common_organization_path
+    )
+
+    common_project_path = staticmethod(TranscoderServiceClient.common_project_path)
+    parse_common_project_path = staticmethod(
+        TranscoderServiceClient.parse_common_project_path
+    )
+
+    common_location_path = staticmethod(TranscoderServiceClient.common_location_path)
+    parse_common_location_path = staticmethod(
+        TranscoderServiceClient.parse_common_location_path
+    )
+
     from_service_account_file = TranscoderServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
+
+    @property
+    def transport(self) -> TranscoderServiceTransport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            TranscoderServiceTransport: The transport used by the client instance.
+        """
+        return self._client.transport
 
     get_transport_class = functools.partial(
         type(TranscoderServiceClient).get_transport_class, type(TranscoderServiceClient)
@@ -157,7 +195,8 @@ class TranscoderServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, job]):
+        has_flattened_params = any([parent, job])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -233,7 +272,8 @@ class TranscoderServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -308,7 +348,8 @@ class TranscoderServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -373,7 +414,8 @@ class TranscoderServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -461,7 +503,8 @@ class TranscoderServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, job_template, job_template_id]):
+        has_flattened_params = any([parent, job_template, job_template_id])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -540,7 +583,8 @@ class TranscoderServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -616,7 +660,8 @@ class TranscoderServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -681,7 +726,8 @@ class TranscoderServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."

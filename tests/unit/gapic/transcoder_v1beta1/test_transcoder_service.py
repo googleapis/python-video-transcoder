@@ -102,12 +102,12 @@ def test_transcoder_service_client_from_service_account_file(client_class):
     ) as factory:
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
         client = client_class.from_service_account_json("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
-        assert client._transport._host == "transcoder.googleapis.com:443"
+        assert client.transport._host == "transcoder.googleapis.com:443"
 
 
 def test_transcoder_service_client_get_transport_class():
@@ -465,7 +465,7 @@ def test_create_job(transport: str = "grpc", request_type=services.CreateJobRequ
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.create_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.create_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.Job(
             name="name_value",
@@ -486,6 +486,7 @@ def test_create_job(transport: str = "grpc", request_type=services.CreateJobRequ
         assert args[0] == services.CreateJobRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, resources.Job)
 
     assert response.name == "name_value"
@@ -506,19 +507,19 @@ def test_create_job_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_create_job_async(transport: str = "grpc_asyncio"):
+async def test_create_job_async(
+    transport: str = "grpc_asyncio", request_type=services.CreateJobRequest
+):
     client = TranscoderServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = services.CreateJobRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.create_job), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.create_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             resources.Job(
@@ -537,7 +538,7 @@ async def test_create_job_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == services.CreateJobRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.Job)
@@ -555,6 +556,11 @@ async def test_create_job_async(transport: str = "grpc_asyncio"):
     assert response.failure_reason == "failure_reason_value"
 
 
+@pytest.mark.asyncio
+async def test_create_job_async_from_dict():
+    await test_create_job_async(request_type=dict)
+
+
 def test_create_job_field_headers():
     client = TranscoderServiceClient(credentials=credentials.AnonymousCredentials(),)
 
@@ -564,7 +570,7 @@ def test_create_job_field_headers():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.create_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.create_job), "__call__") as call:
         call.return_value = resources.Job()
 
         client.create_job(request)
@@ -591,9 +597,7 @@ async def test_create_job_field_headers_async():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.create_job), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.create_job), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(resources.Job())
 
         await client.create_job(request)
@@ -612,7 +616,7 @@ def test_create_job_flattened():
     client = TranscoderServiceClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.create_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.create_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.Job()
 
@@ -652,9 +656,7 @@ async def test_create_job_flattened_async():
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.create_job), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.create_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.Job()
 
@@ -701,7 +703,7 @@ def test_list_jobs(transport: str = "grpc", request_type=services.ListJobsReques
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.list_jobs), "__call__") as call:
+    with mock.patch.object(type(client.transport.list_jobs), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = services.ListJobsResponse(
             next_page_token="next_page_token_value",
@@ -716,6 +718,7 @@ def test_list_jobs(transport: str = "grpc", request_type=services.ListJobsReques
         assert args[0] == services.ListJobsRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, pagers.ListJobsPager)
 
     assert response.next_page_token == "next_page_token_value"
@@ -726,19 +729,19 @@ def test_list_jobs_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_list_jobs_async(transport: str = "grpc_asyncio"):
+async def test_list_jobs_async(
+    transport: str = "grpc_asyncio", request_type=services.ListJobsRequest
+):
     client = TranscoderServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = services.ListJobsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.list_jobs), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.list_jobs), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             services.ListJobsResponse(next_page_token="next_page_token_value",)
@@ -750,12 +753,17 @@ async def test_list_jobs_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == services.ListJobsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListJobsAsyncPager)
 
     assert response.next_page_token == "next_page_token_value"
+
+
+@pytest.mark.asyncio
+async def test_list_jobs_async_from_dict():
+    await test_list_jobs_async(request_type=dict)
 
 
 def test_list_jobs_field_headers():
@@ -767,7 +775,7 @@ def test_list_jobs_field_headers():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.list_jobs), "__call__") as call:
+    with mock.patch.object(type(client.transport.list_jobs), "__call__") as call:
         call.return_value = services.ListJobsResponse()
 
         client.list_jobs(request)
@@ -794,9 +802,7 @@ async def test_list_jobs_field_headers_async():
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.list_jobs), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.list_jobs), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             services.ListJobsResponse()
         )
@@ -817,7 +823,7 @@ def test_list_jobs_flattened():
     client = TranscoderServiceClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.list_jobs), "__call__") as call:
+    with mock.patch.object(type(client.transport.list_jobs), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = services.ListJobsResponse()
 
@@ -851,9 +857,7 @@ async def test_list_jobs_flattened_async():
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.list_jobs), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.list_jobs), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = services.ListJobsResponse()
 
@@ -890,7 +894,7 @@ def test_list_jobs_pager():
     client = TranscoderServiceClient(credentials=credentials.AnonymousCredentials,)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.list_jobs), "__call__") as call:
+    with mock.patch.object(type(client.transport.list_jobs), "__call__") as call:
         # Set the response to a series of pages.
         call.side_effect = (
             services.ListJobsResponse(
@@ -920,7 +924,7 @@ def test_list_jobs_pages():
     client = TranscoderServiceClient(credentials=credentials.AnonymousCredentials,)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.list_jobs), "__call__") as call:
+    with mock.patch.object(type(client.transport.list_jobs), "__call__") as call:
         # Set the response to a series of pages.
         call.side_effect = (
             services.ListJobsResponse(
@@ -943,9 +947,7 @@ async def test_list_jobs_async_pager():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_jobs),
-        "__call__",
-        new_callable=mock.AsyncMock,
+        type(client.transport.list_jobs), "__call__", new_callable=mock.AsyncMock
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
@@ -974,9 +976,7 @@ async def test_list_jobs_async_pages():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_jobs),
-        "__call__",
-        new_callable=mock.AsyncMock,
+        type(client.transport.list_jobs), "__call__", new_callable=mock.AsyncMock
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
@@ -1006,7 +1006,7 @@ def test_get_job(transport: str = "grpc", request_type=services.GetJobRequest):
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.get_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.get_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.Job(
             name="name_value",
@@ -1027,6 +1027,7 @@ def test_get_job(transport: str = "grpc", request_type=services.GetJobRequest):
         assert args[0] == services.GetJobRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, resources.Job)
 
     assert response.name == "name_value"
@@ -1047,17 +1048,19 @@ def test_get_job_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_get_job_async(transport: str = "grpc_asyncio"):
+async def test_get_job_async(
+    transport: str = "grpc_asyncio", request_type=services.GetJobRequest
+):
     client = TranscoderServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = services.GetJobRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._client._transport.get_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.get_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             resources.Job(
@@ -1076,7 +1079,7 @@ async def test_get_job_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == services.GetJobRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.Job)
@@ -1094,6 +1097,11 @@ async def test_get_job_async(transport: str = "grpc_asyncio"):
     assert response.failure_reason == "failure_reason_value"
 
 
+@pytest.mark.asyncio
+async def test_get_job_async_from_dict():
+    await test_get_job_async(request_type=dict)
+
+
 def test_get_job_field_headers():
     client = TranscoderServiceClient(credentials=credentials.AnonymousCredentials(),)
 
@@ -1103,7 +1111,7 @@ def test_get_job_field_headers():
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.get_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.get_job), "__call__") as call:
         call.return_value = resources.Job()
 
         client.get_job(request)
@@ -1130,7 +1138,7 @@ async def test_get_job_field_headers_async():
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._client._transport.get_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.get_job), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(resources.Job())
 
         await client.get_job(request)
@@ -1149,7 +1157,7 @@ def test_get_job_flattened():
     client = TranscoderServiceClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.get_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.get_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.Job()
 
@@ -1183,7 +1191,7 @@ async def test_get_job_flattened_async():
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._client._transport.get_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.get_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.Job()
 
@@ -1224,7 +1232,7 @@ def test_delete_job(transport: str = "grpc", request_type=services.DeleteJobRequ
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.delete_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.delete_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
@@ -1245,19 +1253,19 @@ def test_delete_job_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_delete_job_async(transport: str = "grpc_asyncio"):
+async def test_delete_job_async(
+    transport: str = "grpc_asyncio", request_type=services.DeleteJobRequest
+):
     client = TranscoderServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = services.DeleteJobRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.delete_job), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.delete_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
@@ -1267,10 +1275,15 @@ async def test_delete_job_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == services.DeleteJobRequest()
 
     # Establish that the response is the type that we expect.
     assert response is None
+
+
+@pytest.mark.asyncio
+async def test_delete_job_async_from_dict():
+    await test_delete_job_async(request_type=dict)
 
 
 def test_delete_job_field_headers():
@@ -1282,7 +1295,7 @@ def test_delete_job_field_headers():
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.delete_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.delete_job), "__call__") as call:
         call.return_value = None
 
         client.delete_job(request)
@@ -1309,9 +1322,7 @@ async def test_delete_job_field_headers_async():
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.delete_job), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.delete_job), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
         await client.delete_job(request)
@@ -1330,7 +1341,7 @@ def test_delete_job_flattened():
     client = TranscoderServiceClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.delete_job), "__call__") as call:
+    with mock.patch.object(type(client.transport.delete_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
@@ -1364,9 +1375,7 @@ async def test_delete_job_flattened_async():
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.delete_job), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.delete_job), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
@@ -1410,7 +1419,7 @@ def test_create_job_template(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.create_job_template), "__call__"
+        type(client.transport.create_job_template), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.JobTemplate(name="name_value",)
@@ -1424,6 +1433,7 @@ def test_create_job_template(
         assert args[0] == services.CreateJobTemplateRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, resources.JobTemplate)
 
     assert response.name == "name_value"
@@ -1434,18 +1444,20 @@ def test_create_job_template_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_create_job_template_async(transport: str = "grpc_asyncio"):
+async def test_create_job_template_async(
+    transport: str = "grpc_asyncio", request_type=services.CreateJobTemplateRequest
+):
     client = TranscoderServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = services.CreateJobTemplateRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.create_job_template), "__call__"
+        type(client.transport.create_job_template), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
@@ -1458,12 +1470,17 @@ async def test_create_job_template_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == services.CreateJobTemplateRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.JobTemplate)
 
     assert response.name == "name_value"
+
+
+@pytest.mark.asyncio
+async def test_create_job_template_async_from_dict():
+    await test_create_job_template_async(request_type=dict)
 
 
 def test_create_job_template_field_headers():
@@ -1476,7 +1493,7 @@ def test_create_job_template_field_headers():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.create_job_template), "__call__"
+        type(client.transport.create_job_template), "__call__"
     ) as call:
         call.return_value = resources.JobTemplate()
 
@@ -1505,7 +1522,7 @@ async def test_create_job_template_field_headers_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.create_job_template), "__call__"
+        type(client.transport.create_job_template), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             resources.JobTemplate()
@@ -1528,7 +1545,7 @@ def test_create_job_template_flattened():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.create_job_template), "__call__"
+        type(client.transport.create_job_template), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.JobTemplate()
@@ -1575,7 +1592,7 @@ async def test_create_job_template_flattened_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.create_job_template), "__call__"
+        type(client.transport.create_job_template), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.JobTemplate()
@@ -1633,7 +1650,7 @@ def test_list_job_templates(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_job_templates), "__call__"
+        type(client.transport.list_job_templates), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = services.ListJobTemplatesResponse(
@@ -1649,6 +1666,7 @@ def test_list_job_templates(
         assert args[0] == services.ListJobTemplatesRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, pagers.ListJobTemplatesPager)
 
     assert response.next_page_token == "next_page_token_value"
@@ -1659,18 +1677,20 @@ def test_list_job_templates_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_list_job_templates_async(transport: str = "grpc_asyncio"):
+async def test_list_job_templates_async(
+    transport: str = "grpc_asyncio", request_type=services.ListJobTemplatesRequest
+):
     client = TranscoderServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = services.ListJobTemplatesRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_job_templates), "__call__"
+        type(client.transport.list_job_templates), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
@@ -1683,12 +1703,17 @@ async def test_list_job_templates_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == services.ListJobTemplatesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListJobTemplatesAsyncPager)
 
     assert response.next_page_token == "next_page_token_value"
+
+
+@pytest.mark.asyncio
+async def test_list_job_templates_async_from_dict():
+    await test_list_job_templates_async(request_type=dict)
 
 
 def test_list_job_templates_field_headers():
@@ -1701,7 +1726,7 @@ def test_list_job_templates_field_headers():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_job_templates), "__call__"
+        type(client.transport.list_job_templates), "__call__"
     ) as call:
         call.return_value = services.ListJobTemplatesResponse()
 
@@ -1730,7 +1755,7 @@ async def test_list_job_templates_field_headers_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_job_templates), "__call__"
+        type(client.transport.list_job_templates), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             services.ListJobTemplatesResponse()
@@ -1753,7 +1778,7 @@ def test_list_job_templates_flattened():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_job_templates), "__call__"
+        type(client.transport.list_job_templates), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = services.ListJobTemplatesResponse()
@@ -1789,7 +1814,7 @@ async def test_list_job_templates_flattened_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_job_templates), "__call__"
+        type(client.transport.list_job_templates), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = services.ListJobTemplatesResponse()
@@ -1828,7 +1853,7 @@ def test_list_job_templates_pager():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_job_templates), "__call__"
+        type(client.transport.list_job_templates), "__call__"
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
@@ -1868,7 +1893,7 @@ def test_list_job_templates_pages():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.list_job_templates), "__call__"
+        type(client.transport.list_job_templates), "__call__"
     ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
@@ -1900,7 +1925,7 @@ async def test_list_job_templates_async_pager():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_job_templates),
+        type(client.transport.list_job_templates),
         "__call__",
         new_callable=mock.AsyncMock,
     ) as call:
@@ -1939,7 +1964,7 @@ async def test_list_job_templates_async_pages():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_job_templates),
+        type(client.transport.list_job_templates),
         "__call__",
         new_callable=mock.AsyncMock,
     ) as call:
@@ -1981,9 +2006,7 @@ def test_get_job_template(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._transport.get_job_template), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.get_job_template), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.JobTemplate(name="name_value",)
 
@@ -1996,6 +2019,7 @@ def test_get_job_template(
         assert args[0] == services.GetJobTemplateRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, resources.JobTemplate)
 
     assert response.name == "name_value"
@@ -2006,19 +2030,19 @@ def test_get_job_template_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_get_job_template_async(transport: str = "grpc_asyncio"):
+async def test_get_job_template_async(
+    transport: str = "grpc_asyncio", request_type=services.GetJobTemplateRequest
+):
     client = TranscoderServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = services.GetJobTemplateRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.get_job_template), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.get_job_template), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             resources.JobTemplate(name="name_value",)
@@ -2030,12 +2054,17 @@ async def test_get_job_template_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == services.GetJobTemplateRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.JobTemplate)
 
     assert response.name == "name_value"
+
+
+@pytest.mark.asyncio
+async def test_get_job_template_async_from_dict():
+    await test_get_job_template_async(request_type=dict)
 
 
 def test_get_job_template_field_headers():
@@ -2047,9 +2076,7 @@ def test_get_job_template_field_headers():
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._transport.get_job_template), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.get_job_template), "__call__") as call:
         call.return_value = resources.JobTemplate()
 
         client.get_job_template(request)
@@ -2076,9 +2103,7 @@ async def test_get_job_template_field_headers_async():
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.get_job_template), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.get_job_template), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             resources.JobTemplate()
         )
@@ -2099,9 +2124,7 @@ def test_get_job_template_flattened():
     client = TranscoderServiceClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._transport.get_job_template), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.get_job_template), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.JobTemplate()
 
@@ -2135,9 +2158,7 @@ async def test_get_job_template_flattened_async():
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.get_job_template), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.get_job_template), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = resources.JobTemplate()
 
@@ -2183,7 +2204,7 @@ def test_delete_job_template(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.delete_job_template), "__call__"
+        type(client.transport.delete_job_template), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
@@ -2205,18 +2226,20 @@ def test_delete_job_template_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_delete_job_template_async(transport: str = "grpc_asyncio"):
+async def test_delete_job_template_async(
+    transport: str = "grpc_asyncio", request_type=services.DeleteJobTemplateRequest
+):
     client = TranscoderServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = services.DeleteJobTemplateRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.delete_job_template), "__call__"
+        type(client.transport.delete_job_template), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
@@ -2227,10 +2250,15 @@ async def test_delete_job_template_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == services.DeleteJobTemplateRequest()
 
     # Establish that the response is the type that we expect.
     assert response is None
+
+
+@pytest.mark.asyncio
+async def test_delete_job_template_async_from_dict():
+    await test_delete_job_template_async(request_type=dict)
 
 
 def test_delete_job_template_field_headers():
@@ -2243,7 +2271,7 @@ def test_delete_job_template_field_headers():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.delete_job_template), "__call__"
+        type(client.transport.delete_job_template), "__call__"
     ) as call:
         call.return_value = None
 
@@ -2272,7 +2300,7 @@ async def test_delete_job_template_field_headers_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.delete_job_template), "__call__"
+        type(client.transport.delete_job_template), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
@@ -2293,7 +2321,7 @@ def test_delete_job_template_flattened():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.delete_job_template), "__call__"
+        type(client.transport.delete_job_template), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
@@ -2329,7 +2357,7 @@ async def test_delete_job_template_flattened_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.delete_job_template), "__call__"
+        type(client.transport.delete_job_template), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
@@ -2397,7 +2425,7 @@ def test_transport_instance():
         credentials=credentials.AnonymousCredentials(),
     )
     client = TranscoderServiceClient(transport=transport)
-    assert client._transport is transport
+    assert client.transport is transport
 
 
 def test_transport_get_channel():
@@ -2433,7 +2461,7 @@ def test_transport_adc(transport_class):
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
     client = TranscoderServiceClient(credentials=credentials.AnonymousCredentials(),)
-    assert isinstance(client._transport, transports.TranscoderServiceGrpcTransport,)
+    assert isinstance(client.transport, transports.TranscoderServiceGrpcTransport,)
 
 
 def test_transcoder_service_base_transport_error():
@@ -2534,7 +2562,7 @@ def test_transcoder_service_host_no_port():
             api_endpoint="transcoder.googleapis.com"
         ),
     )
-    assert client._transport._host == "transcoder.googleapis.com:443"
+    assert client.transport._host == "transcoder.googleapis.com:443"
 
 
 def test_transcoder_service_host_with_port():
@@ -2544,7 +2572,7 @@ def test_transcoder_service_host_with_port():
             api_endpoint="transcoder.googleapis.com:8000"
         ),
     )
-    assert client._transport._host == "transcoder.googleapis.com:8000"
+    assert client.transport._host == "transcoder.googleapis.com:8000"
 
 
 def test_transcoder_service_grpc_transport_channel():
@@ -2556,6 +2584,7 @@ def test_transcoder_service_grpc_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 def test_transcoder_service_grpc_asyncio_transport_channel():
@@ -2567,6 +2596,7 @@ def test_transcoder_service_grpc_asyncio_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 @pytest.mark.parametrize(
@@ -2614,6 +2644,7 @@ def test_transcoder_service_transport_channel_mtls_with_client_cert_source(
                 quota_project_id=None,
             )
             assert transport.grpc_channel == mock_grpc_channel
+            assert transport._ssl_channel_credentials == mock_ssl_cred
 
 
 @pytest.mark.parametrize(
@@ -2682,9 +2713,9 @@ def test_parse_job_path():
 
 
 def test_job_template_path():
-    project = "squid"
-    location = "clam"
-    job_template = "whelk"
+    project = "cuttlefish"
+    location = "mussel"
+    job_template = "winkle"
 
     expected = "projects/{project}/locations/{location}/jobTemplates/{job_template}".format(
         project=project, location=location, job_template=job_template,
@@ -2695,14 +2726,115 @@ def test_job_template_path():
 
 def test_parse_job_template_path():
     expected = {
-        "project": "octopus",
-        "location": "oyster",
-        "job_template": "nudibranch",
+        "project": "nautilus",
+        "location": "scallop",
+        "job_template": "abalone",
     }
     path = TranscoderServiceClient.job_template_path(**expected)
 
     # Check that the path construction is reversible.
     actual = TranscoderServiceClient.parse_job_template_path(path)
+    assert expected == actual
+
+
+def test_common_billing_account_path():
+    billing_account = "squid"
+
+    expected = "billingAccounts/{billing_account}".format(
+        billing_account=billing_account,
+    )
+    actual = TranscoderServiceClient.common_billing_account_path(billing_account)
+    assert expected == actual
+
+
+def test_parse_common_billing_account_path():
+    expected = {
+        "billing_account": "clam",
+    }
+    path = TranscoderServiceClient.common_billing_account_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = TranscoderServiceClient.parse_common_billing_account_path(path)
+    assert expected == actual
+
+
+def test_common_folder_path():
+    folder = "whelk"
+
+    expected = "folders/{folder}".format(folder=folder,)
+    actual = TranscoderServiceClient.common_folder_path(folder)
+    assert expected == actual
+
+
+def test_parse_common_folder_path():
+    expected = {
+        "folder": "octopus",
+    }
+    path = TranscoderServiceClient.common_folder_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = TranscoderServiceClient.parse_common_folder_path(path)
+    assert expected == actual
+
+
+def test_common_organization_path():
+    organization = "oyster"
+
+    expected = "organizations/{organization}".format(organization=organization,)
+    actual = TranscoderServiceClient.common_organization_path(organization)
+    assert expected == actual
+
+
+def test_parse_common_organization_path():
+    expected = {
+        "organization": "nudibranch",
+    }
+    path = TranscoderServiceClient.common_organization_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = TranscoderServiceClient.parse_common_organization_path(path)
+    assert expected == actual
+
+
+def test_common_project_path():
+    project = "cuttlefish"
+
+    expected = "projects/{project}".format(project=project,)
+    actual = TranscoderServiceClient.common_project_path(project)
+    assert expected == actual
+
+
+def test_parse_common_project_path():
+    expected = {
+        "project": "mussel",
+    }
+    path = TranscoderServiceClient.common_project_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = TranscoderServiceClient.parse_common_project_path(path)
+    assert expected == actual
+
+
+def test_common_location_path():
+    project = "winkle"
+    location = "nautilus"
+
+    expected = "projects/{project}/locations/{location}".format(
+        project=project, location=location,
+    )
+    actual = TranscoderServiceClient.common_location_path(project, location)
+    assert expected == actual
+
+
+def test_parse_common_location_path():
+    expected = {
+        "project": "scallop",
+        "location": "abalone",
+    }
+    path = TranscoderServiceClient.common_location_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = TranscoderServiceClient.parse_common_location_path(path)
     assert expected == actual
 
 
