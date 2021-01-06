@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-video-transcoder.git",
-        "sha": "03332a4287ad31d2fd41f4de27c3fea5f20e1d53"
+        "sha": "1d2edb80d21eec4b7328c9415f7225be4d1f3a1c"
       }
     },
     {
@@ -126,7 +126,6 @@
     "setup.cfg",
     "testing/.gitignore",
     "tests/unit/gapic/transcoder_v1beta1/__init__.py",
-    "tests/unit/gapic/transcoder_v1beta1/test_transcoder_service.py",
-    "video-transcoder-v1beta1-py.tar.gz"
+    "tests/unit/gapic/transcoder_v1beta1/test_transcoder_service.py"
   ]
 }
