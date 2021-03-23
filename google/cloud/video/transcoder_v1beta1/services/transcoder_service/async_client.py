@@ -89,6 +89,7 @@ class TranscoderServiceAsyncClient:
         TranscoderServiceClient.parse_common_location_path
     )
 
+    from_service_account_info = TranscoderServiceClient.from_service_account_info
     from_service_account_file = TranscoderServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -166,18 +167,20 @@ class TranscoderServiceAsyncClient:
         r"""Creates a job in the specified region.
 
         Args:
-            request (:class:`~.services.CreateJobRequest`):
+            request (:class:`google.cloud.video.transcoder_v1beta1.types.CreateJobRequest`):
                 The request object. Request message for
                 `TranscoderService.CreateJob`.
             parent (:class:`str`):
                 Required. The parent location to create and process this
                 job. Format: ``projects/{project}/locations/{location}``
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            job (:class:`~.resources.Job`):
+            job (:class:`google.cloud.video.transcoder_v1beta1.types.Job`):
                 Required. Parameters for creating
                 transcoding job.
+
                 This corresponds to the ``job`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -189,7 +192,7 @@ class TranscoderServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Job:
+            google.cloud.video.transcoder_v1beta1.types.Job:
                 Transcoding job resource.
         """
         # Create or coerce a protobuf request object.
@@ -244,13 +247,14 @@ class TranscoderServiceAsyncClient:
         r"""Lists jobs in the specified region.
 
         Args:
-            request (:class:`~.services.ListJobsRequest`):
+            request (:class:`google.cloud.video.transcoder_v1beta1.types.ListJobsRequest`):
                 The request object. Request message for
                 `TranscoderService.ListJobs`. The parent location from
                 which to retrieve the collection of jobs.
             parent (:class:`str`):
                 Required. Format:
                 ``projects/{project}/locations/{location}``
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -262,8 +266,8 @@ class TranscoderServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListJobsAsyncPager:
-                Response message for ``TranscoderService.ListJobs``.
+            google.cloud.video.transcoder_v1beta1.services.transcoder_service.pagers.ListJobsAsyncPager:
+                Response message for TranscoderService.ListJobs.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -325,12 +329,13 @@ class TranscoderServiceAsyncClient:
         r"""Returns the job data.
 
         Args:
-            request (:class:`~.services.GetJobRequest`):
+            request (:class:`google.cloud.video.transcoder_v1beta1.types.GetJobRequest`):
                 The request object. Request message for
                 `TranscoderService.GetJob`.
             name (:class:`str`):
                 Required. The name of the job to retrieve. Format:
                 ``projects/{project}/locations/{location}/jobs/{job}``
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -342,7 +347,7 @@ class TranscoderServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.Job:
+            google.cloud.video.transcoder_v1beta1.types.Job:
                 Transcoding job resource.
         """
         # Create or coerce a protobuf request object.
@@ -395,12 +400,13 @@ class TranscoderServiceAsyncClient:
         r"""Deletes a job.
 
         Args:
-            request (:class:`~.services.DeleteJobRequest`):
+            request (:class:`google.cloud.video.transcoder_v1beta1.types.DeleteJobRequest`):
                 The request object. Request message for
                 `TranscoderService.DeleteJob`.
             name (:class:`str`):
                 Required. The name of the job to delete. Format:
                 ``projects/{project}/locations/{location}/jobs/{job}``
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -462,19 +468,21 @@ class TranscoderServiceAsyncClient:
         r"""Creates a job template in the specified region.
 
         Args:
-            request (:class:`~.services.CreateJobTemplateRequest`):
+            request (:class:`google.cloud.video.transcoder_v1beta1.types.CreateJobTemplateRequest`):
                 The request object. Request message for
                 `TranscoderService.CreateJobTemplate`.
             parent (:class:`str`):
                 Required. The parent location to create this job
                 template. Format:
                 ``projects/{project}/locations/{location}``
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            job_template (:class:`~.resources.JobTemplate`):
+            job_template (:class:`google.cloud.video.transcoder_v1beta1.types.JobTemplate`):
                 Required. Parameters for creating job
                 template.
+
                 This corresponds to the ``job_template`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -486,6 +494,7 @@ class TranscoderServiceAsyncClient:
                 This value should be 4-63 characters, and valid
                 characters must match the regular expression
                 ``[a-zA-Z][a-zA-Z0-9_-]*``.
+
                 This corresponds to the ``job_template_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -497,7 +506,7 @@ class TranscoderServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.JobTemplate:
+            google.cloud.video.transcoder_v1beta1.types.JobTemplate:
                 Transcoding job template resource.
         """
         # Create or coerce a protobuf request object.
@@ -554,13 +563,14 @@ class TranscoderServiceAsyncClient:
         r"""Lists job templates in the specified region.
 
         Args:
-            request (:class:`~.services.ListJobTemplatesRequest`):
+            request (:class:`google.cloud.video.transcoder_v1beta1.types.ListJobTemplatesRequest`):
                 The request object. Request message for
                 `TranscoderService.ListJobTemplates`.
             parent (:class:`str`):
                 Required. The parent location from which to retrieve the
                 collection of job templates. Format:
                 ``projects/{project}/locations/{location}``
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -572,9 +582,8 @@ class TranscoderServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListJobTemplatesAsyncPager:
-                Response message for
-                ``TranscoderService.ListJobTemplates``.
+            google.cloud.video.transcoder_v1beta1.services.transcoder_service.pagers.ListJobTemplatesAsyncPager:
+                Response message for TranscoderService.ListJobTemplates.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -636,13 +645,14 @@ class TranscoderServiceAsyncClient:
         r"""Returns the job template data.
 
         Args:
-            request (:class:`~.services.GetJobTemplateRequest`):
+            request (:class:`google.cloud.video.transcoder_v1beta1.types.GetJobTemplateRequest`):
                 The request object. Request message for
                 `TranscoderService.GetJobTemplate`.
             name (:class:`str`):
                 Required. The name of the job template to retrieve.
                 Format:
                 ``projects/{project}/locations/{location}/jobTemplates/{job_template}``
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -654,7 +664,7 @@ class TranscoderServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.resources.JobTemplate:
+            google.cloud.video.transcoder_v1beta1.types.JobTemplate:
                 Transcoding job template resource.
         """
         # Create or coerce a protobuf request object.
@@ -707,12 +717,13 @@ class TranscoderServiceAsyncClient:
         r"""Deletes a job template.
 
         Args:
-            request (:class:`~.services.DeleteJobTemplateRequest`):
+            request (:class:`google.cloud.video.transcoder_v1beta1.types.DeleteJobTemplateRequest`):
                 The request object. Request message for
                 `TranscoderService.DeleteJobTemplate`.
             name (:class:`str`):
                 Required. The name of the job template to delete.
                 ``projects/{project}/locations/{location}/jobTemplates/{job_template}``
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
