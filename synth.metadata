@@ -4,15 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-video-transcoder.git",
-        "sha": "4da7fca8aa862f2e015ea7be6ac97e5187466095"
+        "sha": "03332a4287ad31d2fd41f4de27c3fea5f20e1d53"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "520682435235d9c503983a360a2090025aa47cd1",
-        "internalRef": "350246057"
+        "sha": "69697504d9eba1d064820c3085b4750767be6d08",
+        "internalRef": "348952930"
       }
     },
     {
@@ -42,7 +42,6 @@
     }
   ],
   "generatedFiles": [
-    ".coveragerc",
     ".flake8",
     ".github/CONTRIBUTING.md",
     ".github/ISSUE_TEMPLATE/bug_report.md",
@@ -97,7 +96,6 @@
     "docs/conf.py",
     "docs/multiprocessing.rst",
     "docs/transcoder_v1beta1/services.rst",
-    "docs/transcoder_v1beta1/transcoder_service.rst",
     "docs/transcoder_v1beta1/types.rst",
     "google/cloud/video/transcoder/__init__.py",
     "google/cloud/video/transcoder/py.typed",
@@ -128,6 +126,7 @@
     "setup.cfg",
     "testing/.gitignore",
     "tests/unit/gapic/transcoder_v1beta1/__init__.py",
-    "tests/unit/gapic/transcoder_v1beta1/test_transcoder_service.py"
+    "tests/unit/gapic/transcoder_v1beta1/test_transcoder_service.py",
+    "video-transcoder-v1beta1-py.tar.gz"
   ]
 }

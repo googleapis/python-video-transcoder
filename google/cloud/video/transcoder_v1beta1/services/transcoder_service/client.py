@@ -122,22 +122,6 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
     )
 
     @classmethod
-    def from_service_account_info(cls, info: dict, *args, **kwargs):
-        """Creates an instance of this client using the provided credentials info.
-
-        Args:
-            info (dict): The service account private key info.
-            args: Additional arguments to pass to the constructor.
-            kwargs: Additional arguments to pass to the constructor.
-
-        Returns:
-            TranscoderServiceClient: The constructed client.
-        """
-        credentials = service_account.Credentials.from_service_account_info(info)
-        kwargs["credentials"] = credentials
-        return cls(*args, **kwargs)
-
-    @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
         file.
@@ -149,7 +133,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            TranscoderServiceClient: The constructed client.
+            {@api.name}: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(filename)
         kwargs["credentials"] = credentials
@@ -273,10 +257,10 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, TranscoderServiceTransport]): The
+            transport (Union[str, ~.TranscoderServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+            client_options (client_options_lib.ClientOptions): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -387,20 +371,18 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
         r"""Creates a job in the specified region.
 
         Args:
-            request (google.cloud.video.transcoder_v1beta1.types.CreateJobRequest):
+            request (:class:`~.services.CreateJobRequest`):
                 The request object. Request message for
                 `TranscoderService.CreateJob`.
-            parent (str):
+            parent (:class:`str`):
                 Required. The parent location to create and process this
                 job. Format: ``projects/{project}/locations/{location}``
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            job (google.cloud.video.transcoder_v1beta1.types.Job):
+            job (:class:`~.resources.Job`):
                 Required. Parameters for creating
                 transcoding job.
-
                 This corresponds to the ``job`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -412,7 +394,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.video.transcoder_v1beta1.types.Job:
+            ~.resources.Job:
                 Transcoding job resource.
         """
         # Create or coerce a protobuf request object.
@@ -468,14 +450,13 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
         r"""Lists jobs in the specified region.
 
         Args:
-            request (google.cloud.video.transcoder_v1beta1.types.ListJobsRequest):
+            request (:class:`~.services.ListJobsRequest`):
                 The request object. Request message for
                 `TranscoderService.ListJobs`. The parent location from
                 which to retrieve the collection of jobs.
-            parent (str):
+            parent (:class:`str`):
                 Required. Format:
                 ``projects/{project}/locations/{location}``
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -487,8 +468,8 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.video.transcoder_v1beta1.services.transcoder_service.pagers.ListJobsPager:
-                Response message for TranscoderService.ListJobs.
+            ~.pagers.ListJobsPager:
+                Response message for ``TranscoderService.ListJobs``.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -551,13 +532,12 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
         r"""Returns the job data.
 
         Args:
-            request (google.cloud.video.transcoder_v1beta1.types.GetJobRequest):
+            request (:class:`~.services.GetJobRequest`):
                 The request object. Request message for
                 `TranscoderService.GetJob`.
-            name (str):
+            name (:class:`str`):
                 Required. The name of the job to retrieve. Format:
                 ``projects/{project}/locations/{location}/jobs/{job}``
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -569,7 +549,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.video.transcoder_v1beta1.types.Job:
+            ~.resources.Job:
                 Transcoding job resource.
         """
         # Create or coerce a protobuf request object.
@@ -623,13 +603,12 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
         r"""Deletes a job.
 
         Args:
-            request (google.cloud.video.transcoder_v1beta1.types.DeleteJobRequest):
+            request (:class:`~.services.DeleteJobRequest`):
                 The request object. Request message for
                 `TranscoderService.DeleteJob`.
-            name (str):
+            name (:class:`str`):
                 Required. The name of the job to delete. Format:
                 ``projects/{project}/locations/{location}/jobs/{job}``
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -692,25 +671,23 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
         r"""Creates a job template in the specified region.
 
         Args:
-            request (google.cloud.video.transcoder_v1beta1.types.CreateJobTemplateRequest):
+            request (:class:`~.services.CreateJobTemplateRequest`):
                 The request object. Request message for
                 `TranscoderService.CreateJobTemplate`.
-            parent (str):
+            parent (:class:`str`):
                 Required. The parent location to create this job
                 template. Format:
                 ``projects/{project}/locations/{location}``
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            job_template (google.cloud.video.transcoder_v1beta1.types.JobTemplate):
+            job_template (:class:`~.resources.JobTemplate`):
                 Required. Parameters for creating job
                 template.
-
                 This corresponds to the ``job_template`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            job_template_id (str):
+            job_template_id (:class:`str`):
                 Required. The ID to use for the job template, which will
                 become the final component of the job template's
                 resource name.
@@ -718,7 +695,6 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
                 This value should be 4-63 characters, and valid
                 characters must match the regular expression
                 ``[a-zA-Z][a-zA-Z0-9_-]*``.
-
                 This corresponds to the ``job_template_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -730,7 +706,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.video.transcoder_v1beta1.types.JobTemplate:
+            ~.resources.JobTemplate:
                 Transcoding job template resource.
         """
         # Create or coerce a protobuf request object.
@@ -788,14 +764,13 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
         r"""Lists job templates in the specified region.
 
         Args:
-            request (google.cloud.video.transcoder_v1beta1.types.ListJobTemplatesRequest):
+            request (:class:`~.services.ListJobTemplatesRequest`):
                 The request object. Request message for
                 `TranscoderService.ListJobTemplates`.
-            parent (str):
+            parent (:class:`str`):
                 Required. The parent location from which to retrieve the
                 collection of job templates. Format:
                 ``projects/{project}/locations/{location}``
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -807,8 +782,9 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.video.transcoder_v1beta1.services.transcoder_service.pagers.ListJobTemplatesPager:
-                Response message for TranscoderService.ListJobTemplates.
+            ~.pagers.ListJobTemplatesPager:
+                Response message for
+                ``TranscoderService.ListJobTemplates``.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -871,14 +847,13 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
         r"""Returns the job template data.
 
         Args:
-            request (google.cloud.video.transcoder_v1beta1.types.GetJobTemplateRequest):
+            request (:class:`~.services.GetJobTemplateRequest`):
                 The request object. Request message for
                 `TranscoderService.GetJobTemplate`.
-            name (str):
+            name (:class:`str`):
                 Required. The name of the job template to retrieve.
                 Format:
                 ``projects/{project}/locations/{location}/jobTemplates/{job_template}``
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -890,7 +865,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.video.transcoder_v1beta1.types.JobTemplate:
+            ~.resources.JobTemplate:
                 Transcoding job template resource.
         """
         # Create or coerce a protobuf request object.
@@ -944,13 +919,12 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
         r"""Deletes a job template.
 
         Args:
-            request (google.cloud.video.transcoder_v1beta1.types.DeleteJobTemplateRequest):
+            request (:class:`~.services.DeleteJobTemplateRequest`):
                 The request object. Request message for
                 `TranscoderService.DeleteJobTemplate`.
-            name (str):
+            name (:class:`str`):
                 Required. The name of the job template to delete.
                 ``projects/{project}/locations/{location}/jobTemplates/{job_template}``
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.

@@ -78,34 +78,34 @@ class Job(proto.Message):
             -  ``preset/{preset_id}``
 
             -  User defined JobTemplate: ``{job_template_id}``
-        config (google.cloud.video.transcoder_v1beta1.types.JobConfig):
+        config (~.resources.JobConfig):
             The configuration for this job.
         priority (int):
             Specify the priority of the job. Enter a
             value between 0 and 100, where 0 is the lowest
             priority and 100 is the highest priority. The
             default is 0.
-        origin_uri (google.cloud.video.transcoder_v1beta1.types.Job.OriginUri):
+        origin_uri (~.resources.Job.OriginUri):
             Output only. The origin URI.
-        state (google.cloud.video.transcoder_v1beta1.types.Job.ProcessingState):
+        state (~.resources.Job.ProcessingState):
             Output only. The current state of the job.
-        progress (google.cloud.video.transcoder_v1beta1.types.Progress):
+        progress (~.resources.Progress):
             Output only. Estimated fractional progress, from ``0`` to
             ``1`` for each step.
         failure_reason (str):
             Output only. A description of the reason for the failure.
             This property is always present when ``state`` is
             ``FAILED``.
-        failure_details (Sequence[google.cloud.video.transcoder_v1beta1.types.FailureDetail]):
+        failure_details (Sequence[~.resources.FailureDetail]):
             Output only. List of failure details. This property may
             contain additional information about the failure when
             ``failure_reason`` is present.
-        create_time (google.protobuf.timestamp_pb2.Timestamp):
+        create_time (~.timestamp.Timestamp):
             Output only. The time the job was created.
-        start_time (google.protobuf.timestamp_pb2.Timestamp):
+        start_time (~.timestamp.Timestamp):
             Output only. The time the transcoding
             started.
-        end_time (google.protobuf.timestamp_pb2.Timestamp):
+        end_time (~.timestamp.Timestamp):
             Output only. The time the transcoding
             finished.
     """
@@ -175,7 +175,7 @@ class JobTemplate(proto.Message):
         name (str):
             The resource name of the job template. Format:
             ``projects/{project}/locations/{location}/jobTemplates/{job_template}``
-        config (google.cloud.video.transcoder_v1beta1.types.JobConfig):
+        config (~.resources.JobConfig):
             The configuration for this template.
     """
 
@@ -188,28 +188,28 @@ class JobConfig(proto.Message):
     r"""Job configuration
 
     Attributes:
-        inputs (Sequence[google.cloud.video.transcoder_v1beta1.types.Input]):
+        inputs (Sequence[~.resources.Input]):
             List of input assets stored in Cloud Storage.
-        edit_list (Sequence[google.cloud.video.transcoder_v1beta1.types.EditAtom]):
+        edit_list (Sequence[~.resources.EditAtom]):
             List of ``Edit atom``\ s. Defines the ultimate timeline of
             the resulting file or manifest.
-        elementary_streams (Sequence[google.cloud.video.transcoder_v1beta1.types.ElementaryStream]):
+        elementary_streams (Sequence[~.resources.ElementaryStream]):
             List of elementary streams.
-        mux_streams (Sequence[google.cloud.video.transcoder_v1beta1.types.MuxStream]):
+        mux_streams (Sequence[~.resources.MuxStream]):
             List of multiplexing settings for output
             streams.
-        manifests (Sequence[google.cloud.video.transcoder_v1beta1.types.Manifest]):
+        manifests (Sequence[~.resources.Manifest]):
             List of output manifests.
-        output (google.cloud.video.transcoder_v1beta1.types.Output):
+        output (~.resources.Output):
             Output configuration.
-        ad_breaks (Sequence[google.cloud.video.transcoder_v1beta1.types.AdBreak]):
+        ad_breaks (Sequence[~.resources.AdBreak]):
             List of ad breaks. Specifies where to insert
             ad break tags in the output manifests.
-        pubsub_destination (google.cloud.video.transcoder_v1beta1.types.PubsubDestination):
+        pubsub_destination (~.resources.PubsubDestination):
             Destination on Pub/Sub.
-        sprite_sheets (Sequence[google.cloud.video.transcoder_v1beta1.types.SpriteSheet]):
+        sprite_sheets (Sequence[~.resources.SpriteSheet]):
             List of output sprite sheets.
-        overlays (Sequence[google.cloud.video.transcoder_v1beta1.types.Overlay]):
+        overlays (Sequence[~.resources.Overlay]):
             List of overlays on the output video, in
             descending Z-order.
     """
@@ -251,7 +251,7 @@ class Input(proto.Message):
             URI of the media. It must be stored in Cloud Storage.
             Example ``gs://bucket/inputs/file.mp4``. If empty the value
             will be populated from ``Job.input_uri``.
-        preprocessing_config (google.cloud.video.transcoder_v1beta1.types.PreprocessingConfig):
+        preprocessing_config (~.resources.PreprocessingConfig):
             Preprocessing configurations.
     """
 
@@ -288,11 +288,11 @@ class EditAtom(proto.Message):
             List of ``Input.key``\ s identifying files that should be
             used in this atom. The listed ``inputs`` must have the same
             timeline.
-        end_time_offset (google.protobuf.duration_pb2.Duration):
+        end_time_offset (~.duration.Duration):
             End time in seconds for the atom, relative to the input file
             timeline. When ``end_time_offset`` is not specified, the
             ``inputs`` are used until the end of the atom.
-        start_time_offset (google.protobuf.duration_pb2.Duration):
+        start_time_offset (~.duration.Duration):
             Start time in seconds for the atom, relative to the input
             file timeline. The default is ``0s``.
     """
@@ -310,7 +310,7 @@ class AdBreak(proto.Message):
     r"""Ad break.
 
     Attributes:
-        start_time_offset (google.protobuf.duration_pb2.Duration):
+        start_time_offset (~.duration.Duration):
             Start time in seconds for the ad break, relative to the
             output file timeline. The default is ``0s``.
     """
@@ -326,11 +326,11 @@ class ElementaryStream(proto.Message):
     Attributes:
         key (str):
             A unique key for this elementary stream.
-        video_stream (google.cloud.video.transcoder_v1beta1.types.VideoStream):
+        video_stream (~.resources.VideoStream):
             Encoding of a video stream.
-        audio_stream (google.cloud.video.transcoder_v1beta1.types.AudioStream):
+        audio_stream (~.resources.AudioStream):
             Encoding of an audio stream.
-        text_stream (google.cloud.video.transcoder_v1beta1.types.TextStream):
+        text_stream (~.resources.TextStream):
             Encoding of a text stream. For example,
             closed captions or subtitles.
     """
@@ -378,9 +378,9 @@ class MuxStream(proto.Message):
         elementary_streams (Sequence[str]):
             List of ``ElementaryStream.key``\ s multiplexed in this
             stream.
-        segment_settings (google.cloud.video.transcoder_v1beta1.types.SegmentSettings):
+        segment_settings (~.resources.SegmentSettings):
             Segment settings for ``"ts"``, ``"fmp4"`` and ``"vtt"``.
-        encryption (google.cloud.video.transcoder_v1beta1.types.Encryption):
+        encryption (~.resources.Encryption):
             Encryption settings.
     """
 
@@ -405,7 +405,7 @@ class Manifest(proto.Message):
             The name of the generated file. The default is
             ``"manifest"`` with the extension suffix corresponding to
             the ``Manifest.type``.
-        type_ (google.cloud.video.transcoder_v1beta1.types.Manifest.ManifestType):
+        type_ (~.resources.Manifest.ManifestType):
             Required. Type of the manifest, can be "HLS"
             or "DASH".
         mux_streams (Sequence[str]):
@@ -474,10 +474,10 @@ class SpriteSheet(proto.Message):
             When the sprite sheet is full, a new sprite
             sheet is created. The default is 0, which
             indicates no maximum limit.
-        start_time_offset (google.protobuf.duration_pb2.Duration):
+        start_time_offset (~.duration.Duration):
             Start time in seconds, relative to the output file timeline.
             Determines the first sprite to pick. The default is ``0s``.
-        end_time_offset (google.protobuf.duration_pb2.Duration):
+        end_time_offset (~.duration.Duration):
             End time in seconds, relative to the output file timeline.
             When ``end_time_offset`` is not specified, the sprites are
             generated until the end of the output file.
@@ -486,7 +486,7 @@ class SpriteSheet(proto.Message):
             number of sprites distributed evenly across the
             timeline of the output media. The default is
             100.
-        interval (google.protobuf.duration_pb2.Duration):
+        interval (~.duration.Duration):
             Starting from ``0s``, create sprites at regular intervals.
             Specify the interval value in seconds.
     """
@@ -521,9 +521,9 @@ class Overlay(proto.Message):
     r"""Overlay configuration.
 
     Attributes:
-        image (google.cloud.video.transcoder_v1beta1.types.Overlay.Image):
+        image (~.resources.Overlay.Image):
             Image overlay.
-        animations (Sequence[google.cloud.video.transcoder_v1beta1.types.Overlay.Animation]):
+        animations (Sequence[~.resources.Overlay.Animation]):
             List of Animations. The list should be
             chronological, without any time overlap.
     """
@@ -555,7 +555,7 @@ class Overlay(proto.Message):
             uri (str):
                 Required. URI of the image in Cloud Storage. For example,
                 ``gs://bucket/inputs/image.jpeg``.
-            resolution (google.cloud.video.transcoder_v1beta1.types.Overlay.NormalizedCoordinate):
+            resolution (~.resources.Overlay.NormalizedCoordinate):
                 Normalized image resolution, based on output video
                 resolution. Valid values: ``0.0``–``1.0``. To respect the
                 original image aspect ratio, set either ``x`` or ``y`` to
@@ -578,11 +578,11 @@ class Overlay(proto.Message):
         r"""Display static overlay object.
 
         Attributes:
-            xy (google.cloud.video.transcoder_v1beta1.types.Overlay.NormalizedCoordinate):
+            xy (~.resources.Overlay.NormalizedCoordinate):
                 Normalized coordinates based on output video resolution.
                 Valid values: ``0.0``–``1.0``. ``xy`` is the upper-left
                 coordinate of the overlay object.
-            start_time_offset (google.protobuf.duration_pb2.Duration):
+            start_time_offset (~.duration.Duration):
                 The time to start displaying the overlay
                 object, in seconds. Default: 0
         """
@@ -599,17 +599,17 @@ class Overlay(proto.Message):
         r"""Display overlay object with fade animation.
 
         Attributes:
-            fade_type (google.cloud.video.transcoder_v1beta1.types.Overlay.FadeType):
+            fade_type (~.resources.Overlay.FadeType):
                 Required. Type of fade animation: ``FADE_IN`` or
                 ``FADE_OUT``.
-            xy (google.cloud.video.transcoder_v1beta1.types.Overlay.NormalizedCoordinate):
+            xy (~.resources.Overlay.NormalizedCoordinate):
                 Normalized coordinates based on output video resolution.
                 Valid values: ``0.0``–``1.0``. ``xy`` is the upper-left
                 coordinate of the overlay object.
-            start_time_offset (google.protobuf.duration_pb2.Duration):
+            start_time_offset (~.duration.Duration):
                 The time to start the fade animation, in
                 seconds. Default: 0
-            end_time_offset (google.protobuf.duration_pb2.Duration):
+            end_time_offset (~.duration.Duration):
                 The time to end the fade animation, in seconds. Default:
                 ``start_time_offset`` + 1s
         """
@@ -634,7 +634,7 @@ class Overlay(proto.Message):
         animation until the end of the video.
 
         Attributes:
-            start_time_offset (google.protobuf.duration_pb2.Duration):
+            start_time_offset (~.duration.Duration):
                 The time to end overlay object, in seconds.
                 Default: 0
         """
@@ -647,11 +647,11 @@ class Overlay(proto.Message):
         r"""Animation types.
 
         Attributes:
-            animation_static (google.cloud.video.transcoder_v1beta1.types.Overlay.AnimationStatic):
+            animation_static (~.resources.Overlay.AnimationStatic):
                 Display static overlay object.
-            animation_fade (google.cloud.video.transcoder_v1beta1.types.Overlay.AnimationFade):
+            animation_fade (~.resources.Overlay.AnimationFade):
                 Display overlay object with fade animation.
-            animation_end (google.cloud.video.transcoder_v1beta1.types.Overlay.AnimationEnd):
+            animation_end (~.resources.Overlay.AnimationEnd):
                 End previous animation.
         """
 
@@ -685,13 +685,13 @@ class PreprocessingConfig(proto.Message):
     r"""Preprocessing configurations.
 
     Attributes:
-        color (google.cloud.video.transcoder_v1beta1.types.PreprocessingConfig.Color):
+        color (~.resources.PreprocessingConfig.Color):
             Color preprocessing configuration.
-        denoise (google.cloud.video.transcoder_v1beta1.types.PreprocessingConfig.Denoise):
+        denoise (~.resources.PreprocessingConfig.Denoise):
             Denoise preprocessing configuration.
-        deblock (google.cloud.video.transcoder_v1beta1.types.PreprocessingConfig.Deblock):
+        deblock (~.resources.PreprocessingConfig.Deblock):
             Deblock preprocessing configuration.
-        audio (google.cloud.video.transcoder_v1beta1.types.PreprocessingConfig.Audio):
+        audio (~.resources.PreprocessingConfig.Audio):
             Audio preprocessing configuration.
     """
 
@@ -883,7 +883,7 @@ class VideoStream(proto.Message):
         gop_frame_count (int):
             Select the GOP size based on the specified
             frame count. Must be greater than zero.
-        gop_duration (google.protobuf.duration_pb2.Duration):
+        gop_duration (~.duration.Duration):
             Select the GOP size based on the specified duration. The
             default is ``"3s"``.
         entropy_coder (str):
@@ -1017,7 +1017,7 @@ class AudioStream(proto.Message):
             -  'sr' - Side right channel
             -  'fc' - Front center channel
             -  'lfe' - Low frequency
-        mapping (Sequence[google.cloud.video.transcoder_v1beta1.types.AudioStream.AudioAtom]):
+        mapping (Sequence[~.resources.AudioStream.AudioAtom]):
             The mapping for the ``Job.edit_list`` atoms with audio
             ``EditAtom.inputs``.
         sample_rate_hertz (int):
@@ -1033,7 +1033,7 @@ class AudioStream(proto.Message):
             key (str):
                 Required. The ``EditAtom.key`` that references the atom with
                 audio inputs in the ``Job.edit_list``.
-            channels (Sequence[google.cloud.video.transcoder_v1beta1.types.AudioStream.AudioAtom.AudioChannel]):
+            channels (Sequence[~.resources.AudioStream.AudioAtom.AudioChannel]):
                 List of ``Channel``\ s for this audio stream. for in-depth
                 explanation.
         """
@@ -1042,7 +1042,7 @@ class AudioStream(proto.Message):
             r"""The audio channel.
 
             Attributes:
-                inputs (Sequence[google.cloud.video.transcoder_v1beta1.types.AudioStream.AudioAtom.AudioChannel.AudioChannelInput]):
+                inputs (Sequence[~.resources.AudioStream.AudioAtom.AudioChannel.AudioChannelInput]):
                     List of ``Job.inputs`` for this audio channel.
             """
 
@@ -1117,7 +1117,7 @@ class TextStream(proto.Message):
             Required. The BCP-47 language code, such as ``"en-US"`` or
             ``"sr-Latn"``. For more information, see
             https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-        mapping (Sequence[google.cloud.video.transcoder_v1beta1.types.TextStream.TextAtom]):
+        mapping (Sequence[~.resources.TextStream.TextAtom]):
             The mapping for the ``Job.edit_list`` atoms with text
             ``EditAtom.inputs``.
     """
@@ -1130,7 +1130,7 @@ class TextStream(proto.Message):
             key (str):
                 Required. The ``EditAtom.key`` that references atom with
                 text inputs in the ``Job.edit_list``.
-            inputs (Sequence[google.cloud.video.transcoder_v1beta1.types.TextStream.TextAtom.TextInput]):
+            inputs (Sequence[~.resources.TextStream.TextAtom.TextInput]):
                 List of ``Job.inputs`` that should be embedded in this atom.
                 Only one input is supported.
         """
@@ -1167,7 +1167,7 @@ class SegmentSettings(proto.Message):
     r"""Segment settings for ``"ts"``, ``"fmp4"`` and ``"vtt"``.
 
     Attributes:
-        segment_duration (google.protobuf.duration_pb2.Duration):
+        segment_duration (~.duration.Duration):
             Duration of the segments in seconds. The default is
             ``"6.0s"``.
         individual_segments (bool):
@@ -1190,11 +1190,11 @@ class Encryption(proto.Message):
         iv (str):
             Required. 128 bit Initialization Vector (IV)
             represented as lowercase hexadecimal digits.
-        aes_128 (google.cloud.video.transcoder_v1beta1.types.Encryption.Aes128Encryption):
+        aes_128 (~.resources.Encryption.Aes128Encryption):
             Configuration for AES-128 encryption.
-        sample_aes (google.cloud.video.transcoder_v1beta1.types.Encryption.SampleAesEncryption):
+        sample_aes (~.resources.Encryption.SampleAesEncryption):
             Configuration for SAMPLE-AES encryption.
-        mpeg_cenc (google.cloud.video.transcoder_v1beta1.types.Encryption.MpegCommonEncryption):
+        mpeg_cenc (~.resources.Encryption.MpegCommonEncryption):
             Configuration for MPEG Common Encryption
             (MPEG-CENC).
     """
