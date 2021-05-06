@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,15 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 import warnings
-from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple, Union
+from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import grpc_helpers_async  # type: ignore
 from google import auth  # type: ignore
 from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
-import packaging.version
 
 import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
@@ -29,6 +30,7 @@ from grpc.experimental import aio  # type: ignore
 from google.cloud.video.transcoder_v1beta1.types import resources
 from google.cloud.video.transcoder_v1beta1.types import services
 from google.protobuf import empty_pb2 as empty  # type: ignore
+
 from .base import TranscoderServiceTransport, DEFAULT_CLIENT_INFO
 from .grpc import TranscoderServiceGrpcTransport
 
@@ -86,15 +88,13 @@ class TranscoderServiceGrpcAsyncIOTransport(TranscoderServiceTransport):
         Returns:
             aio.Channel: A gRPC AsyncIO channel object.
         """
-
-        self_signed_jwt_kwargs = cls._get_self_signed_jwt_kwargs(host, scopes)
-
+        scopes = scopes or cls.AUTH_SCOPES
         return grpc_helpers_async.create_channel(
             host,
             credentials=credentials,
             credentials_file=credentials_file,
+            scopes=scopes,
             quota_project_id=quota_project_id,
-            **self_signed_jwt_kwargs,
             **kwargs,
         )
 
@@ -116,8 +116,7 @@ class TranscoderServiceGrpcAsyncIOTransport(TranscoderServiceTransport):
         """Instantiate the transport.
 
         Args:
-            host (Optional[str]):
-                 The hostname to connect to.
+            host (Optional[str]): The hostname to connect to.
             credentials (Optional[google.auth.credentials.Credentials]): The
                 authorization credentials to attach to requests. These
                 credentials identify the application to the service; if none
@@ -175,6 +174,7 @@ class TranscoderServiceGrpcAsyncIOTransport(TranscoderServiceTransport):
             # If a channel was explicitly provided, set it.
             self._grpc_channel = channel
             self._ssl_channel_credentials = None
+
         else:
             if api_mtls_endpoint:
                 host = api_mtls_endpoint
@@ -237,9 +237,7 @@ class TranscoderServiceGrpcAsyncIOTransport(TranscoderServiceTransport):
     def create_job(
         self,
     ) -> Callable[[services.CreateJobRequest], Awaitable[resources.Job]]:
-        r"""Return a callable for the
-        create job
-          method over gRPC.
+        r"""Return a callable for the create job method over gRPC.
 
         Creates a job in the specified region.
 
@@ -265,9 +263,7 @@ class TranscoderServiceGrpcAsyncIOTransport(TranscoderServiceTransport):
     def list_jobs(
         self,
     ) -> Callable[[services.ListJobsRequest], Awaitable[services.ListJobsResponse]]:
-        r"""Return a callable for the
-        list jobs
-          method over gRPC.
+        r"""Return a callable for the list jobs method over gRPC.
 
         Lists jobs in the specified region.
 
@@ -291,9 +287,7 @@ class TranscoderServiceGrpcAsyncIOTransport(TranscoderServiceTransport):
 
     @property
     def get_job(self) -> Callable[[services.GetJobRequest], Awaitable[resources.Job]]:
-        r"""Return a callable for the
-        get job
-          method over gRPC.
+        r"""Return a callable for the get job method over gRPC.
 
         Returns the job data.
 
@@ -319,9 +313,7 @@ class TranscoderServiceGrpcAsyncIOTransport(TranscoderServiceTransport):
     def delete_job(
         self,
     ) -> Callable[[services.DeleteJobRequest], Awaitable[empty.Empty]]:
-        r"""Return a callable for the
-        delete job
-          method over gRPC.
+        r"""Return a callable for the delete job method over gRPC.
 
         Deletes a job.
 
@@ -349,9 +341,7 @@ class TranscoderServiceGrpcAsyncIOTransport(TranscoderServiceTransport):
     ) -> Callable[
         [services.CreateJobTemplateRequest], Awaitable[resources.JobTemplate]
     ]:
-        r"""Return a callable for the
-        create job template
-          method over gRPC.
+        r"""Return a callable for the create job template method over gRPC.
 
         Creates a job template in the specified region.
 
@@ -379,9 +369,7 @@ class TranscoderServiceGrpcAsyncIOTransport(TranscoderServiceTransport):
     ) -> Callable[
         [services.ListJobTemplatesRequest], Awaitable[services.ListJobTemplatesResponse]
     ]:
-        r"""Return a callable for the
-        list job templates
-          method over gRPC.
+        r"""Return a callable for the list job templates method over gRPC.
 
         Lists job templates in the specified region.
 
@@ -407,9 +395,7 @@ class TranscoderServiceGrpcAsyncIOTransport(TranscoderServiceTransport):
     def get_job_template(
         self,
     ) -> Callable[[services.GetJobTemplateRequest], Awaitable[resources.JobTemplate]]:
-        r"""Return a callable for the
-        get job template
-          method over gRPC.
+        r"""Return a callable for the get job template method over gRPC.
 
         Returns the job template data.
 
@@ -435,9 +421,7 @@ class TranscoderServiceGrpcAsyncIOTransport(TranscoderServiceTransport):
     def delete_job_template(
         self,
     ) -> Callable[[services.DeleteJobTemplateRequest], Awaitable[empty.Empty]]:
-        r"""Return a callable for the
-        delete job template
-          method over gRPC.
+        r"""Return a callable for the delete job template method over gRPC.
 
         Deletes a job template.
 

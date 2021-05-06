@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +16,6 @@
 #
 
 from .services.transcoder_service import TranscoderServiceClient
-
 from .types.resources import AdBreak
 from .types.resources import AudioStream
 from .types.resources import EditAtom
@@ -47,6 +47,7 @@ from .types.services import ListJobTemplatesRequest
 from .types.services import ListJobTemplatesResponse
 from .types.services import ListJobsRequest
 from .types.services import ListJobsResponse
+
 
 __all__ = (
     "AdBreak",
