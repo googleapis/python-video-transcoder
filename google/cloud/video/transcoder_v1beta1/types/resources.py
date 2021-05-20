@@ -400,6 +400,7 @@ class PubsubDestination(proto.Message):
 
 class SpriteSheet(proto.Message):
     r"""Sprite sheet configuration.
+
     Attributes:
         format_ (str):
             Format type. The default is ``"jpeg"``.
