@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.3.2](https://www.github.com/googleapis/python-video-transcoder/compare/v0.3.1...v0.3.2) (2021-06-21)
+
+
+### Documentation
+
+* omit mention of Python 2.7 in 'CONTRIBUTING.rst' ([#1127](https://www.github.com/googleapis/python-video-transcoder/issues/1127)) ([#58](https://www.github.com/googleapis/python-video-transcoder/issues/58)) ([1659ce8](https://www.github.com/googleapis/python-video-transcoder/commit/1659ce88ef94139a271be9719a4adaf4e3a600c0)), closes [#1126](https://www.github.com/googleapis/python-video-transcoder/issues/1126)
+
 ### [0.3.1](https://www.github.com/googleapis/python-video-transcoder/compare/v0.3.0...v0.3.1) (2021-05-28)
 
 
