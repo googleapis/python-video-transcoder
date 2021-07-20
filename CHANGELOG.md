@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.4.1](https://www.github.com/googleapis/python-video-transcoder/compare/v0.4.0...v0.4.1) (2021-07-20)
+
+
+### Bug Fixes
+
+* **deps:** pin 'google-{api,cloud}-core', 'google-auth' to allow 2.x versions ([#70](https://www.github.com/googleapis/python-video-transcoder/issues/70)) ([37d076a](https://www.github.com/googleapis/python-video-transcoder/commit/37d076a9fba1fc995ee955528007d10c75765975))
+
 ## [0.4.0](https://www.github.com/googleapis/python-video-transcoder/compare/v0.3.1...v0.4.0) (2021-07-09)
 
 
