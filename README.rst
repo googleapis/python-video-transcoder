@@ -79,4 +79,4 @@ Next Steps
    APIs that we cover.
 
 .. _Transcoder API Product documentation:  https://cloud.google.com/transcoder/docs
-.. _README: https://github.com/googleapis/google-cloud-python/blob/master/README.rst
+.. _README: https://github.com/googleapis/google-cloud-python/blob/main/README.rst
