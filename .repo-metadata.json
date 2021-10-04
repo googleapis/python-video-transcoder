@@ -10,6 +10,6 @@
     "repo": "googleapis/python-video-transcoder",
     "distribution_name": "google-cloud-video-transcoder",
     "api_id": "transcoder.googleapis.com",
-    "default_version": "",
+    "default_version": "v1",
     "codeowner_team": ""
 }
