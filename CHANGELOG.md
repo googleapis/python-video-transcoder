@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.2](https://www.github.com/googleapis/python-video-transcoder/compare/v1.0.1...v1.0.2) (2021-10-06)
+
+
+### Bug Fixes
+
+* remove Encryption settings that were published erroneously ([#102](https://www.github.com/googleapis/python-video-transcoder/issues/102)) ([824009a](https://www.github.com/googleapis/python-video-transcoder/commit/824009ac01700341071b50af2741ef6493dcbcf5))
+
 ### [1.0.1](https://www.github.com/googleapis/python-video-transcoder/compare/v1.0.0...v1.0.1) (2021-09-30)
 
 
