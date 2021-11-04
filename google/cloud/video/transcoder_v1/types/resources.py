@@ -81,6 +81,7 @@ class Job(proto.Message):
             -  ``preset/{preset_id}``
 
             -  User defined JobTemplate: ``{job_template_id}``
+
             This field is a member of `oneof`_ ``job_config``.
         config (google.cloud.video.transcoder_v1.types.JobConfig):
             The configuration for this job.
