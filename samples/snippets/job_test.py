@@ -259,10 +259,7 @@ def test_create_job_with_animated_overlay(capsys, test_bucket):
 
 def test_create_job_with_set_number_spritesheet(capsys, test_bucket):
     create_job_with_set_number_images_spritesheet.create_job_with_set_number_images_spritesheet(
-        project_id,
-        location,
-        input_uri,
-        output_uri_for_set_number_spritesheet,
+        project_id, location, input_uri, output_uri_for_set_number_spritesheet,
     )
     out, _ = capsys.readouterr()
     job_name_prefix = f"projects/{project_number}/locations/{location}/jobs/"
@@ -310,10 +307,7 @@ def test_create_job_with_set_number_spritesheet(capsys, test_bucket):
 
 def test_create_job_with_periodic_spritesheet(capsys, test_bucket):
     create_job_with_periodic_images_spritesheet.create_job_with_periodic_images_spritesheet(
-        project_id,
-        location,
-        input_uri,
-        output_uri_for_periodic_spritesheet,
+        project_id, location, input_uri, output_uri_for_periodic_spritesheet,
     )
     out, _ = capsys.readouterr()
     job_name_prefix = f"projects/{project_number}/locations/{location}/jobs/"
