@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Sequence, Tuple, Type, Union
+from typing import Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -120,6 +120,42 @@ class TranscoderServiceAsyncClient:
 
     from_service_account_json = from_service_account_file
 
+    @classmethod
+    def get_mtls_endpoint_and_cert_source(
+        cls, client_options: Optional[ClientOptions] = None
+    ):
+        """Return the API endpoint and client cert source for mutual TLS.
+
+        The client cert source is determined in the following order:
+        (1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is not "true", the
+        client cert source is None.
+        (2) if `client_options.client_cert_source` is provided, use the provided one; if the
+        default client cert source exists, use the default one; otherwise the client cert
+        source is None.
+
+        The API endpoint is determined in the following order:
+        (1) if `client_options.api_endpoint` if provided, use the provided one.
+        (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
+        default mTLS endpoint; if the environment variabel is "never", use the default API
+        endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+        use the default API endpoint.
+
+        More details can be found at https://google.aip.dev/auth/4114.
+
+        Args:
+            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+                client. Only the `api_endpoint` and `client_cert_source` properties may be used
+                in this method.
+
+        Returns:
+            Tuple[str, Callable[[], Tuple[bytes, bytes]]]: returns the API endpoint and the
+                client cert source to use.
+
+        Raises:
+            google.auth.exceptions.MutualTLSChannelError: If any errors happen.
+        """
+        return TranscoderServiceClient.get_mtls_endpoint_and_cert_source(client_options)  # type: ignore
+
     @property
     def transport(self) -> TranscoderServiceTransport:
         """Returns the transport used by the client instance.
@@ -192,6 +228,29 @@ class TranscoderServiceAsyncClient:
     ) -> resources.Job:
         r"""Creates a job in the specified region.
 
+        .. code-block::
+
+            from google.cloud.video import transcoder_v1
+
+            def sample_create_job():
+                # Create a client
+                client = transcoder_v1.TranscoderServiceClient()
+
+                # Initialize request argument(s)
+                job = transcoder_v1.Job()
+                job.template_id = "template_id_value"
+
+                request = transcoder_v1.CreateJobRequest(
+                    parent="parent_value",
+                    job=job,
+                )
+
+                # Make the request
+                response = client.create_job(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.video.transcoder_v1.types.CreateJobRequest, dict]):
                 The request object. Request message for
@@ -221,7 +280,7 @@ class TranscoderServiceAsyncClient:
                 Transcoding job resource.
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, job])
         if request is not None and has_flattened_params:
@@ -270,6 +329,24 @@ class TranscoderServiceAsyncClient:
     ) -> pagers.ListJobsAsyncPager:
         r"""Lists jobs in the specified region.
 
+        .. code-block::
+
+            from google.cloud.video import transcoder_v1
+
+            def sample_list_jobs():
+                # Create a client
+                client = transcoder_v1.TranscoderServiceClient()
+
+                # Initialize request argument(s)
+                request = transcoder_v1.ListJobsRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                page_result = client.list_jobs(request=request)
+                for response in page_result:
+                    print(response)
+
         Args:
             request (Union[google.cloud.video.transcoder_v1.types.ListJobsRequest, dict]):
                 The request object. Request message for
@@ -297,7 +374,7 @@ class TranscoderServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
@@ -350,6 +427,25 @@ class TranscoderServiceAsyncClient:
     ) -> resources.Job:
         r"""Returns the job data.
 
+        .. code-block::
+
+            from google.cloud.video import transcoder_v1
+
+            def sample_get_job():
+                # Create a client
+                client = transcoder_v1.TranscoderServiceClient()
+
+                # Initialize request argument(s)
+                request = transcoder_v1.GetJobRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.get_job(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.video.transcoder_v1.types.GetJobRequest, dict]):
                 The request object. Request message for
@@ -372,7 +468,7 @@ class TranscoderServiceAsyncClient:
                 Transcoding job resource.
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -419,6 +515,22 @@ class TranscoderServiceAsyncClient:
     ) -> None:
         r"""Deletes a job.
 
+        .. code-block::
+
+            from google.cloud.video import transcoder_v1
+
+            def sample_delete_job():
+                # Create a client
+                client = transcoder_v1.TranscoderServiceClient()
+
+                # Initialize request argument(s)
+                request = transcoder_v1.DeleteJobRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.delete_job(request=request)
+
         Args:
             request (Union[google.cloud.video.transcoder_v1.types.DeleteJobRequest, dict]):
                 The request object. Request message for
@@ -437,7 +549,7 @@ class TranscoderServiceAsyncClient:
                 sent along with the request as metadata.
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -485,6 +597,26 @@ class TranscoderServiceAsyncClient:
     ) -> resources.JobTemplate:
         r"""Creates a job template in the specified region.
 
+        .. code-block::
+
+            from google.cloud.video import transcoder_v1
+
+            def sample_create_job_template():
+                # Create a client
+                client = transcoder_v1.TranscoderServiceClient()
+
+                # Initialize request argument(s)
+                request = transcoder_v1.CreateJobTemplateRequest(
+                    parent="parent_value",
+                    job_template_id="job_template_id_value",
+                )
+
+                # Make the request
+                response = client.create_job_template(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.video.transcoder_v1.types.CreateJobTemplateRequest, dict]):
                 The request object. Request message for
@@ -527,7 +659,7 @@ class TranscoderServiceAsyncClient:
                 Transcoding job template resource.
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, job_template, job_template_id])
         if request is not None and has_flattened_params:
@@ -578,6 +710,24 @@ class TranscoderServiceAsyncClient:
     ) -> pagers.ListJobTemplatesAsyncPager:
         r"""Lists job templates in the specified region.
 
+        .. code-block::
+
+            from google.cloud.video import transcoder_v1
+
+            def sample_list_job_templates():
+                # Create a client
+                client = transcoder_v1.TranscoderServiceClient()
+
+                # Initialize request argument(s)
+                request = transcoder_v1.ListJobTemplatesRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                page_result = client.list_job_templates(request=request)
+                for response in page_result:
+                    print(response)
+
         Args:
             request (Union[google.cloud.video.transcoder_v1.types.ListJobTemplatesRequest, dict]):
                 The request object. Request message for
@@ -605,7 +755,7 @@ class TranscoderServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
@@ -658,6 +808,25 @@ class TranscoderServiceAsyncClient:
     ) -> resources.JobTemplate:
         r"""Returns the job template data.
 
+        .. code-block::
+
+            from google.cloud.video import transcoder_v1
+
+            def sample_get_job_template():
+                # Create a client
+                client = transcoder_v1.TranscoderServiceClient()
+
+                # Initialize request argument(s)
+                request = transcoder_v1.GetJobTemplateRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.get_job_template(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.video.transcoder_v1.types.GetJobTemplateRequest, dict]):
                 The request object. Request message for
@@ -681,7 +850,7 @@ class TranscoderServiceAsyncClient:
                 Transcoding job template resource.
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -728,6 +897,22 @@ class TranscoderServiceAsyncClient:
     ) -> None:
         r"""Deletes a job template.
 
+        .. code-block::
+
+            from google.cloud.video import transcoder_v1
+
+            def sample_delete_job_template():
+                # Create a client
+                client = transcoder_v1.TranscoderServiceClient()
+
+                # Initialize request argument(s)
+                request = transcoder_v1.DeleteJobTemplateRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.delete_job_template(request=request)
+
         Args:
             request (Union[google.cloud.video.transcoder_v1.types.DeleteJobTemplateRequest, dict]):
                 The request object. Request message for
@@ -746,7 +931,7 @@ class TranscoderServiceAsyncClient:
                 sent along with the request as metadata.
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
