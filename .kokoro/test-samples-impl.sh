@@ -76,7 +76,7 @@ for file in samples/**/requirements.txt; do
     echo "------------------------------------------------------------"
 
     # Use nox to execute the tests for the project.
-    python3.6 -m nox -s "$RUN_TESTS_SESSION"
+    python3.6 -m nox -s "$RUN_TESTS_SESSION" --verbose
     EXIT=$?
 
     # If this is a periodic build, send the test log to the FlakyBot.

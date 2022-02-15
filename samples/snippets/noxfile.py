@@ -218,8 +218,8 @@ def _session_tests(
         if post_install:
             post_install(session)
 
-        session.install("--upgrade", "protobuf")
-        session.install("proto-plus==1.20.1")
+        session.install("--upgrade", "protobuf", silent=False)
+        session.install("proto-plus==1.20.1", silent=False)
 
         session.run(
             "pytest",
