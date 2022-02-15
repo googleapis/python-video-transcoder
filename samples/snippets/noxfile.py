@@ -103,6 +103,8 @@ INSTALL_LIBRARY_FROM_SOURCE = os.environ.get("INSTALL_LIBRARY_FROM_SOURCE", Fals
 # Error if a python version is missing
 nox.options.error_on_missing_interpreters = True
 
+nox.options.verbose = True
+
 #
 # Style Checks
 #
@@ -216,7 +218,7 @@ def _session_tests(
         if post_install:
             post_install(session)
 
-        session.install("--upgrade", "protobuf", "--no-binary", "protobuf")
+        session.install("--upgrade", "protobuf")
         session.install("proto-plus==1.20.1")
 
         session.run(
