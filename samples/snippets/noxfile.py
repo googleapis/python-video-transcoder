@@ -215,6 +215,8 @@ def _session_tests(
         if post_install:
             post_install(session)
 
+        session.install("proto-plus==1.20.1")
+
         session.run(
             "pytest",
             *(PYTEST_COMMON_ARGS + session.posargs),
