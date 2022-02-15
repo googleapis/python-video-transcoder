@@ -195,6 +195,7 @@ def _session_tests(
             pip_version = TEST_CONFIG["pip_version_override"]
             session.install(f"pip=={pip_version}")
         """Runs py.test for a particular project."""
+
         if os.path.exists("requirements.txt"):
             if os.path.exists("constraints.txt"):
                 session.install("-r", "requirements.txt", "-c", "constraints.txt")
@@ -215,6 +216,7 @@ def _session_tests(
         if post_install:
             post_install(session)
 
+        session.install("--upgrade", "protobuf", "--no-binary", "protobuf")
         session.install("proto-plus==1.20.1")
 
         session.run(
