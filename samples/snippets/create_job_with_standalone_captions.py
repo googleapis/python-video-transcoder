@@ -83,14 +83,12 @@ def create_job_with_standalone_captions(
             transcoder_v1.types.ElementaryStream(
                 key="vtt-stream0",
                 text_stream=transcoder_v1.types.TextStream(
-                  codec="webvtt",
-                  mapping_=[
-                    transcoder_v1.types.TextStream.TextMapping(
-                      atom_key="atom0",
-                      input_key="caption-input0",
-                      input_track=0,
-                    ),
-                  ],
+                    codec="webvtt",
+                    mapping_=[
+                        transcoder_v1.types.TextStream.TextMapping(
+                            atom_key="atom0", input_key="caption-input0", input_track=0,
+                        ),
+                    ],
                 ),
             ),
         ],

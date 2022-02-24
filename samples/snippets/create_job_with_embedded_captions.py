@@ -82,14 +82,12 @@ def create_job_with_embedded_captions(
             transcoder_v1.types.ElementaryStream(
                 key="cea-stream0",
                 text_stream=transcoder_v1.types.TextStream(
-                  codec="cea608",
-                  mapping_=[
-                    transcoder_v1.types.TextStream.TextMapping(
-                      atom_key="atom0",
-                      input_key="caption-input0",
-                      input_track=0,
-                    ),
-                  ],
+                    codec="cea608",
+                    mapping_=[
+                        transcoder_v1.types.TextStream.TextMapping(
+                            atom_key="atom0", input_key="caption-input0", input_track=0,
+                        ),
+                    ],
                 ),
             ),
         ],
