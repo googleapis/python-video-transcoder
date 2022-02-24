@@ -6,12 +6,10 @@
 ### Features
 
 * add api key support ([#127](https://github.com/googleapis/python-video-transcoder/issues/127)) ([ac6a403](https://github.com/googleapis/python-video-transcoder/commit/ac6a4031ac66a721d776c41885830023023f14f2)), closes [#140](https://github.com/googleapis/python-video-transcoder/issues/140)
-* add samples and tests for adding captions to a job ([#131](https://github.com/googleapis/python-video-transcoder/issues/131)) ([e30431f](https://github.com/googleapis/python-video-transcoder/commit/e30431fec7c15666afbb5bc975f7077389aac06d))
 
 
 ### Bug Fixes
 
-* **deps:** require proto-plus >= 1.20.1 ([c14695b](https://github.com/googleapis/python-video-transcoder/commit/c14695bc9070ec64a890c8f81af382165f5d04ea))
 * **deps:** require proto-plus >= 1.20.3 ([ac6a403](https://github.com/googleapis/python-video-transcoder/commit/ac6a4031ac66a721d776c41885830023023f14f2))
 * Remove deprecated v1beta1 API that is no longer available ([#138](https://github.com/googleapis/python-video-transcoder/issues/138)) ([e8a85da](https://github.com/googleapis/python-video-transcoder/commit/e8a85da130a0b688167a1474c339c66af1c6760c))
 * rename mapping attribute of AudioStream to mapping_ ([c14695b](https://github.com/googleapis/python-video-transcoder/commit/c14695bc9070ec64a890c8f81af382165f5d04ea))
@@ -23,6 +21,7 @@
 
 * add generated snippets ([e8a85da](https://github.com/googleapis/python-video-transcoder/commit/e8a85da130a0b688167a1474c339c66af1c6760c))
 * **samples:** update samples to use mapping_ attribute of AudioStream ([#142](https://github.com/googleapis/python-video-transcoder/issues/142)) ([7fbc619](https://github.com/googleapis/python-video-transcoder/commit/7fbc61917562c269439828df82b474700c95ea23))
+* **samples:** add samples and tests for adding captions to a job ([#131](https://github.com/googleapis/python-video-transcoder/issues/131)) ([e30431f](https://github.com/googleapis/python-video-transcoder/commit/e30431fec7c15666afbb5bc975f7077389aac06d))
 
 ### [1.2.1](https://www.github.com/googleapis/python-video-transcoder/compare/v1.2.0...v1.2.1) (2021-11-04)
 
