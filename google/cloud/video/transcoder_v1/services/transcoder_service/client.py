@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -472,7 +472,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import transcoder_v1
+                    from google.cloud.video import transcoder_v1
 
             def sample_create_job():
                 # Create a client
@@ -578,7 +578,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import transcoder_v1
+                    from google.cloud.video import transcoder_v1
 
             def sample_list_jobs():
                 # Create a client
@@ -686,7 +686,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import transcoder_v1
+                    from google.cloud.video import transcoder_v1
 
             def sample_get_job():
                 # Create a client
@@ -779,7 +779,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import transcoder_v1
+                    from google.cloud.video import transcoder_v1
 
             def sample_delete_job():
                 # Create a client
@@ -864,7 +864,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import transcoder_v1
+                    from google.cloud.video import transcoder_v1
 
             def sample_create_job_template():
                 # Create a client
@@ -982,7 +982,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import transcoder_v1
+                    from google.cloud.video import transcoder_v1
 
             def sample_list_job_templates():
                 # Create a client
@@ -1090,7 +1090,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import transcoder_v1
+                    from google.cloud.video import transcoder_v1
 
             def sample_get_job_template():
                 # Create a client
@@ -1184,7 +1184,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import transcoder_v1
+                    from google.cloud.video import transcoder_v1
 
             def sample_delete_job_template():
                 # Create a client
