@@ -3251,7 +3251,6 @@ def test_transcoder_service_transport_auth_adc(transport_class):
     [
         transports.TranscoderServiceGrpcTransport,
         transports.TranscoderServiceGrpcAsyncIOTransport,
-        transports.TranscoderServiceRestTransport,
     ],
 )
 def test_transcoder_service_transport_auth_gdch_credentials(transport_class):
