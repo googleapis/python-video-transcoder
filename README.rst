@@ -3,7 +3,7 @@ Python Client for Transcoder API
 
 |stable| |pypi| |versions|
 
-`Transcoder API`_: 
+`Transcoder API`_: allows you to transcode videos into a variety of formats. The Transcoder API benefits broadcasters, production companies, businesses, and individuals looking to transform their video content for use across a variety of user devices.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
