@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -61,7 +72,7 @@ class TranscoderServiceClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[TranscoderServiceTransport]:
         """Returns an appropriate transport class.
 
@@ -365,7 +376,7 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, TranscoderServiceTransport, None] = None,
+        transport: Optional[Union[str, TranscoderServiceTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -463,12 +474,12 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
     def create_job(
         self,
-        request: Union[services.CreateJobRequest, dict] = None,
+        request: Optional[Union[services.CreateJobRequest, dict]] = None,
         *,
-        parent: str = None,
-        job: resources.Job = None,
+        parent: Optional[str] = None,
+        job: Optional[resources.Job] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.Job:
         r"""Creates a job in the specified region.
@@ -577,11 +588,11 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
     def list_jobs(
         self,
-        request: Union[services.ListJobsRequest, dict] = None,
+        request: Optional[Union[services.ListJobsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListJobsPager:
         r"""Lists jobs in the specified region.
@@ -692,11 +703,11 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
     def get_job(
         self,
-        request: Union[services.GetJobRequest, dict] = None,
+        request: Optional[Union[services.GetJobRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.Job:
         r"""Returns the job data.
@@ -792,11 +803,11 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
     def delete_job(
         self,
-        request: Union[services.DeleteJobRequest, dict] = None,
+        request: Optional[Union[services.DeleteJobRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes a job.
@@ -882,13 +893,13 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
     def create_job_template(
         self,
-        request: Union[services.CreateJobTemplateRequest, dict] = None,
+        request: Optional[Union[services.CreateJobTemplateRequest, dict]] = None,
         *,
-        parent: str = None,
-        job_template: resources.JobTemplate = None,
-        job_template_id: str = None,
+        parent: Optional[str] = None,
+        job_template: Optional[resources.JobTemplate] = None,
+        job_template_id: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.JobTemplate:
         r"""Creates a job template in the specified region.
@@ -1009,11 +1020,11 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
     def list_job_templates(
         self,
-        request: Union[services.ListJobTemplatesRequest, dict] = None,
+        request: Optional[Union[services.ListJobTemplatesRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListJobTemplatesPager:
         r"""Lists job templates in the specified region.
@@ -1124,11 +1135,11 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
     def get_job_template(
         self,
-        request: Union[services.GetJobTemplateRequest, dict] = None,
+        request: Optional[Union[services.GetJobTemplateRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.JobTemplate:
         r"""Returns the job template data.
@@ -1225,11 +1236,11 @@ class TranscoderServiceClient(metaclass=TranscoderServiceClientMeta):
 
     def delete_job_template(
         self,
-        request: Union[services.DeleteJobTemplateRequest, dict] = None,
+        request: Optional[Union[services.DeleteJobTemplateRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes a job template.
