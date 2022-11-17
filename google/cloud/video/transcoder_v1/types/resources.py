@@ -603,6 +603,12 @@ class SpriteSheet(proto.Message):
             [SpriteSheet.sprite_height_pixels][google.cloud.video.transcoder.v1.SpriteSheet.sprite_height_pixels]
             field, but not both (the API will automatically calculate
             the missing field).
+
+            For portrait videos that contain horizontal ASR and rotation
+            metadata, provide the width, in pixels, per the horizontal
+            ASR. The API calculates the height per the horizontal ASR.
+            The API detects any rotation metadata and swaps the
+            requested height and width for the output.
         sprite_height_pixels (int):
             Required. The height of sprite in pixels. Must be an even
             integer. To preserve the source aspect ratio, set the
@@ -611,6 +617,12 @@ class SpriteSheet(proto.Message):
             [SpriteSheet.sprite_width_pixels][google.cloud.video.transcoder.v1.SpriteSheet.sprite_width_pixels]
             field, but not both (the API will automatically calculate
             the missing field).
+
+            For portrait videos that contain horizontal ASR and rotation
+            metadata, provide the height, in pixels, per the horizontal
+            ASR. The API calculates the width per the horizontal ASR.
+            The API detects any rotation metadata and swaps the
+            requested height and width for the output.
         column_count (int):
             The maximum number of sprites per row in a
             sprite sheet. The default is 0, which indicates
@@ -928,6 +940,8 @@ class PreprocessingConfig(proto.Message):
             Specify the video cropping configuration.
         pad (google.cloud.video.transcoder_v1.types.PreprocessingConfig.Pad):
             Specify the video pad filter configuration.
+        deinterlace (google.cloud.video.transcoder_v1.types.PreprocessingConfig.Deinterlace):
+            Specify the video deinterlace configuration.
     """
 
     class Color(proto.Message):
@@ -1135,6 +1149,118 @@ class PreprocessingConfig(proto.Message):
             number=4,
         )
 
+    class Deinterlace(proto.Message):
+        r"""Deinterlace configuration for input video.
+
+        This message has `oneof`_ fields (mutually exclusive fields).
+        For each oneof, at most one member field can be set at the same time.
+        Setting any member of the oneof automatically clears all other
+        members.
+
+        .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
+        Attributes:
+            yadif (google.cloud.video.transcoder_v1.types.PreprocessingConfig.Deinterlace.YadifConfig):
+                Specifies the Yet Another Deinterlacing
+                Filter Configuration.
+
+                This field is a member of `oneof`_ ``deinterlacing_filter``.
+            bwdif (google.cloud.video.transcoder_v1.types.PreprocessingConfig.Deinterlace.BwdifConfig):
+                Specifies the Bob Weaver Deinterlacing Filter
+                Configuration.
+
+                This field is a member of `oneof`_ ``deinterlacing_filter``.
+        """
+
+        class YadifConfig(proto.Message):
+            r"""Yet Another Deinterlacing Filter Configuration.
+
+            Attributes:
+                mode (str):
+                    Specifies the deinterlacing mode to adopt. The default is
+                    ``send_frame``. Supported values:
+
+                    -  ``send_frame``: Output one frame for each frame
+                    -  ``send_field``: Output one frame for each field
+                disable_spatial_interlacing (bool):
+                    Disable spacial interlacing. The default is ``false``.
+                parity (str):
+                    The picture field parity assumed for the input interlaced
+                    video. The default is ``auto``. Supported values:
+
+                    -  ``tff``: Assume the top field is first
+                    -  ``bff``: Assume the bottom field is first
+                    -  ``auto``: Enable automatic detection of field parity
+                deinterlace_all_frames (bool):
+                    Deinterlace all frames rather than just the frames
+                    identified as interlaced. The default is ``false``.
+            """
+
+            mode: str = proto.Field(
+                proto.STRING,
+                number=1,
+            )
+            disable_spatial_interlacing: bool = proto.Field(
+                proto.BOOL,
+                number=2,
+            )
+            parity: str = proto.Field(
+                proto.STRING,
+                number=3,
+            )
+            deinterlace_all_frames: bool = proto.Field(
+                proto.BOOL,
+                number=4,
+            )
+
+        class BwdifConfig(proto.Message):
+            r"""Bob Weaver Deinterlacing Filter Configuration.
+
+            Attributes:
+                mode (str):
+                    Specifies the deinterlacing mode to adopt. The default is
+                    ``send_frame``. Supported values:
+
+                    -  ``send_frame``: Output one frame for each frame
+                    -  ``send_field``: Output one frame for each field
+                parity (str):
+                    The picture field parity assumed for the input interlaced
+                    video. The default is ``auto``. Supported values:
+
+                    -  ``tff``: Assume the top field is first
+                    -  ``bff``: Assume the bottom field is first
+                    -  ``auto``: Enable automatic detection of field parity
+                deinterlace_all_frames (bool):
+                    Deinterlace all frames rather than just the frames
+                    identified as interlaced. The default is ``false``.
+            """
+
+            mode: str = proto.Field(
+                proto.STRING,
+                number=1,
+            )
+            parity: str = proto.Field(
+                proto.STRING,
+                number=2,
+            )
+            deinterlace_all_frames: bool = proto.Field(
+                proto.BOOL,
+                number=3,
+            )
+
+        yadif: "PreprocessingConfig.Deinterlace.YadifConfig" = proto.Field(
+            proto.MESSAGE,
+            number=1,
+            oneof="deinterlacing_filter",
+            message="PreprocessingConfig.Deinterlace.YadifConfig",
+        )
+        bwdif: "PreprocessingConfig.Deinterlace.BwdifConfig" = proto.Field(
+            proto.MESSAGE,
+            number=2,
+            oneof="deinterlacing_filter",
+            message="PreprocessingConfig.Deinterlace.BwdifConfig",
+        )
+
     color: Color = proto.Field(
         proto.MESSAGE,
         number=1,
@@ -1164,6 +1290,11 @@ class PreprocessingConfig(proto.Message):
         proto.MESSAGE,
         number=6,
         message=Pad,
+    )
+    deinterlace: Deinterlace = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message=Deinterlace,
     )
 
 
@@ -1209,12 +1340,24 @@ class VideoStream(proto.Message):
                 adjusted to match the specified height and input
                 aspect ratio. If both are omitted, the input
                 width is used.
+                For portrait videos that contain horizontal ASR
+                and rotation metadata, provide the width, in
+                pixels, per the horizontal ASR. The API
+                calculates the height per the horizontal ASR.
+                The API detects any rotation metadata and swaps
+                the requested height and width for the output.
             height_pixels (int):
                 The height of the video in pixels. Must be an
                 even integer. When not specified, the height is
                 adjusted to match the specified width and input
                 aspect ratio. If both are omitted, the input
                 height is used.
+                For portrait videos that contain horizontal ASR
+                and rotation metadata, provide the height, in
+                pixels, per the horizontal ASR. The API
+                calculates the width per the horizontal ASR. The
+                API detects any rotation metadata and swaps the
+                requested height and width for the output.
             frame_rate (float):
                 Required. The target video frame rate in frames per second
                 (FPS). Must be less than or equal to 120. Will default to
@@ -1430,12 +1573,24 @@ class VideoStream(proto.Message):
                 adjusted to match the specified height and input
                 aspect ratio. If both are omitted, the input
                 width is used.
+                For portrait videos that contain horizontal ASR
+                and rotation metadata, provide the width, in
+                pixels, per the horizontal ASR. The API
+                calculates the height per the horizontal ASR.
+                The API detects any rotation metadata and swaps
+                the requested height and width for the output.
             height_pixels (int):
                 The height of the video in pixels. Must be an
                 even integer. When not specified, the height is
                 adjusted to match the specified width and input
                 aspect ratio. If both are omitted, the input
                 height is used.
+                For portrait videos that contain horizontal ASR
+                and rotation metadata, provide the height, in
+                pixels, per the horizontal ASR. The API
+                calculates the width per the horizontal ASR. The
+                API detects any rotation metadata and swaps the
+                requested height and width for the output.
             frame_rate (float):
                 Required. The target video frame rate in frames per second
                 (FPS). Must be less than or equal to 120. Will default to
@@ -1660,12 +1815,24 @@ class VideoStream(proto.Message):
                 adjusted to match the specified height and input
                 aspect ratio. If both are omitted, the input
                 width is used.
+                For portrait videos that contain horizontal ASR
+                and rotation metadata, provide the width, in
+                pixels, per the horizontal ASR. The API
+                calculates the height per the horizontal ASR.
+                The API detects any rotation metadata and swaps
+                the requested height and width for the output.
             height_pixels (int):
                 The height of the video in pixels. Must be an
                 even integer. When not specified, the height is
                 adjusted to match the specified width and input
                 aspect ratio. If both are omitted, the input
                 height is used.
+                For portrait videos that contain horizontal ASR
+                and rotation metadata, provide the height, in
+                pixels, per the horizontal ASR. The API
+                calculates the width per the horizontal ASR. The
+                API detects any rotation metadata and swaps the
+                requested height and width for the output.
             frame_rate (float):
                 Required. The target video frame rate in frames per second
                 (FPS). Must be less than or equal to 120. Will default to
