@@ -14,24 +14,21 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import gapic_v1, path_template, rest_helpers, rest_streaming
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -39,12 +36,12 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.cloud.video.transcoder_v1.types import resources
-from google.cloud.video.transcoder_v1.types import services
 from google.protobuf import empty_pb2  # type: ignore
 
-from .base import TranscoderServiceTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from google.cloud.video.transcoder_v1.types import resources, services
 
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from .base import TranscoderServiceTransport
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -129,7 +126,10 @@ class TranscoderServiceRestInterceptor:
 
 
     """
-    def pre_create_job(self, request: services.CreateJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[services.CreateJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_job(
+        self, request: services.CreateJobRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[services.CreateJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_job
 
         Override in a subclass to manipulate the request or metadata
@@ -145,7 +145,12 @@ class TranscoderServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_job_template(self, request: services.CreateJobTemplateRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[services.CreateJobTemplateRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_job_template(
+        self,
+        request: services.CreateJobTemplateRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[services.CreateJobTemplateRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_job_template
 
         Override in a subclass to manipulate the request or metadata
@@ -153,7 +158,9 @@ class TranscoderServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_job_template(self, response: resources.JobTemplate) -> resources.JobTemplate:
+    def post_create_job_template(
+        self, response: resources.JobTemplate
+    ) -> resources.JobTemplate:
         """Post-rpc interceptor for create_job_template
 
         Override in a subclass to manipulate the response
@@ -161,7 +168,10 @@ class TranscoderServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_job(self, request: services.DeleteJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[services.DeleteJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_job(
+        self, request: services.DeleteJobRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[services.DeleteJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_job
 
         Override in a subclass to manipulate the request or metadata
@@ -169,7 +179,11 @@ class TranscoderServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_job_template(self, request: services.DeleteJobTemplateRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[services.DeleteJobTemplateRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_job_template(
+        self,
+        request: services.DeleteJobTemplateRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[services.DeleteJobTemplateRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_job_template
 
         Override in a subclass to manipulate the request or metadata
@@ -177,7 +191,9 @@ class TranscoderServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_get_job(self, request: services.GetJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[services.GetJobRequest, Sequence[Tuple[str, str]]]:
+    def pre_get_job(
+        self, request: services.GetJobRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[services.GetJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_job
 
         Override in a subclass to manipulate the request or metadata
@@ -193,7 +209,12 @@ class TranscoderServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_job_template(self, request: services.GetJobTemplateRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[services.GetJobTemplateRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_job_template(
+        self,
+        request: services.GetJobTemplateRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[services.GetJobTemplateRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_job_template
 
         Override in a subclass to manipulate the request or metadata
@@ -201,7 +222,9 @@ class TranscoderServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_job_template(self, response: resources.JobTemplate) -> resources.JobTemplate:
+    def post_get_job_template(
+        self, response: resources.JobTemplate
+    ) -> resources.JobTemplate:
         """Post-rpc interceptor for get_job_template
 
         Override in a subclass to manipulate the response
@@ -209,7 +232,10 @@ class TranscoderServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_jobs(self, request: services.ListJobsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[services.ListJobsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_jobs(
+        self, request: services.ListJobsRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[services.ListJobsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_jobs
 
         Override in a subclass to manipulate the request or metadata
@@ -217,7 +243,9 @@ class TranscoderServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_jobs(self, response: services.ListJobsResponse) -> services.ListJobsResponse:
+    def post_list_jobs(
+        self, response: services.ListJobsResponse
+    ) -> services.ListJobsResponse:
         """Post-rpc interceptor for list_jobs
 
         Override in a subclass to manipulate the response
@@ -225,7 +253,12 @@ class TranscoderServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_job_templates(self, request: services.ListJobTemplatesRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[services.ListJobTemplatesRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_job_templates(
+        self,
+        request: services.ListJobTemplatesRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[services.ListJobTemplatesRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_job_templates
 
         Override in a subclass to manipulate the request or metadata
@@ -233,7 +266,9 @@ class TranscoderServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_job_templates(self, response: services.ListJobTemplatesResponse) -> services.ListJobTemplatesResponse:
+    def post_list_job_templates(
+        self, response: services.ListJobTemplatesResponse
+    ) -> services.ListJobTemplatesResponse:
         """Post-rpc interceptor for list_job_templates
 
         Override in a subclass to manipulate the response
@@ -269,20 +304,21 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'transcoder.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[TranscoderServiceRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "transcoder.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[TranscoderServiceRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -321,7 +357,9 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -332,10 +370,11 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
         self._interceptor = interceptor or TranscoderServiceRestInterceptor()
@@ -345,19 +384,24 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("CreateJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: services.CreateJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Job:
+        def __call__(
+            self,
+            request: services.CreateJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Job:
             r"""Call the create job method over HTTP.
 
             Args:
@@ -374,11 +418,12 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
                     Transcoding job resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/jobs',
-                'body': 'job',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/jobs",
+                    "body": "job",
+                },
             ]
             request, metadata = self._interceptor.pre_create_job(request, metadata)
             pb_request = services.CreateJobRequest.pb(request)
@@ -387,33 +432,35 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -432,19 +479,26 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("CreateJobTemplate")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "jobTemplateId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "jobTemplateId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: services.CreateJobTemplateRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.JobTemplate:
+        def __call__(
+            self,
+            request: services.CreateJobTemplateRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.JobTemplate:
             r"""Call the create job template method over HTTP.
 
             Args:
@@ -463,46 +517,51 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
                     Transcoding job template resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/jobTemplates',
-                'body': 'job_template',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/jobTemplates",
+                    "body": "job_template",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_job_template(request, metadata)
+            request, metadata = self._interceptor.pre_create_job_template(
+                request, metadata
+            )
             pb_request = services.CreateJobTemplateRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -521,19 +580,24 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("DeleteJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: services.DeleteJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: services.DeleteJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete job method over HTTP.
 
             Args:
@@ -546,37 +610,40 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/jobs/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/jobs/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_job(request, metadata)
             pb_request = services.DeleteJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -587,19 +654,24 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("DeleteJobTemplate")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: services.DeleteJobTemplateRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: services.DeleteJobTemplateRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete job template method over HTTP.
 
             Args:
@@ -614,37 +686,42 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/jobTemplates/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/jobTemplates/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_job_template(request, metadata)
+            request, metadata = self._interceptor.pre_delete_job_template(
+                request, metadata
+            )
             pb_request = services.DeleteJobTemplateRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -655,19 +732,24 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("GetJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: services.GetJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Job:
+        def __call__(
+            self,
+            request: services.GetJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Job:
             r"""Call the get job method over HTTP.
 
             Args:
@@ -684,37 +766,40 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
                     Transcoding job resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/jobs/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/jobs/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_job(request, metadata)
             pb_request = services.GetJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -733,19 +818,24 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("GetJobTemplate")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: services.GetJobTemplateRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.JobTemplate:
+        def __call__(
+            self,
+            request: services.GetJobTemplateRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.JobTemplate:
             r"""Call the get job template method over HTTP.
 
             Args:
@@ -764,37 +854,42 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
                     Transcoding job template resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/jobTemplates/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/jobTemplates/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_job_template(request, metadata)
+            request, metadata = self._interceptor.pre_get_job_template(
+                request, metadata
+            )
             pb_request = services.GetJobTemplateRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -813,19 +908,24 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("ListJobs")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: services.ListJobsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> services.ListJobsResponse:
+        def __call__(
+            self,
+            request: services.ListJobsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> services.ListJobsResponse:
             r"""Call the list jobs method over HTTP.
 
             Args:
@@ -845,37 +945,40 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
                     Response message for ``TranscoderService.ListJobs``.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/jobs',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/jobs",
+                },
             ]
             request, metadata = self._interceptor.pre_list_jobs(request, metadata)
             pb_request = services.ListJobsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -894,19 +997,24 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("ListJobTemplates")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: services.ListJobTemplatesRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> services.ListJobTemplatesResponse:
+        def __call__(
+            self,
+            request: services.ListJobTemplatesRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> services.ListJobTemplatesResponse:
             r"""Call the list job templates method over HTTP.
 
             Args:
@@ -927,37 +1035,42 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/jobTemplates',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/jobTemplates",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_job_templates(request, metadata)
+            request, metadata = self._interceptor.pre_list_job_templates(
+                request, metadata
+            )
             pb_request = services.ListJobTemplatesRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -973,68 +1086,64 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
             return resp
 
     @property
-    def create_job(self) -> Callable[
-            [services.CreateJobRequest],
-            resources.Job]:
+    def create_job(self) -> Callable[[services.CreateJobRequest], resources.Job]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_job_template(self) -> Callable[
-            [services.CreateJobTemplateRequest],
-            resources.JobTemplate]:
+    def create_job_template(
+        self,
+    ) -> Callable[[services.CreateJobTemplateRequest], resources.JobTemplate]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateJobTemplate(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateJobTemplate(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_job(self) -> Callable[
-            [services.DeleteJobRequest],
-            empty_pb2.Empty]:
+    def delete_job(self) -> Callable[[services.DeleteJobRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_job_template(self) -> Callable[
-            [services.DeleteJobTemplateRequest],
-            empty_pb2.Empty]:
+    def delete_job_template(
+        self,
+    ) -> Callable[[services.DeleteJobTemplateRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteJobTemplate(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteJobTemplate(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_job(self) -> Callable[
-            [services.GetJobRequest],
-            resources.Job]:
+    def get_job(self) -> Callable[[services.GetJobRequest], resources.Job]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_job_template(self) -> Callable[
-            [services.GetJobTemplateRequest],
-            resources.JobTemplate]:
+    def get_job_template(
+        self,
+    ) -> Callable[[services.GetJobTemplateRequest], resources.JobTemplate]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetJobTemplate(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetJobTemplate(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_jobs(self) -> Callable[
-            [services.ListJobsRequest],
-            services.ListJobsResponse]:
+    def list_jobs(
+        self,
+    ) -> Callable[[services.ListJobsRequest], services.ListJobsResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListJobs(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListJobs(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_job_templates(self) -> Callable[
-            [services.ListJobTemplatesRequest],
-            services.ListJobTemplatesResponse]:
+    def list_job_templates(
+        self,
+    ) -> Callable[
+        [services.ListJobTemplatesRequest], services.ListJobTemplatesResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListJobTemplates(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListJobTemplates(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -1044,6 +1153,4 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         self._session.close()
 
 
-__all__=(
-    'TranscoderServiceRestTransport',
-)
+__all__ = ("TranscoderServiceRestTransport",)
