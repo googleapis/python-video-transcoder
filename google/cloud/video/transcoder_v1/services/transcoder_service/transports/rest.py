@@ -17,7 +17,7 @@
 import dataclasses
 import json  # type: ignore
 import re
-from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
+from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
 
 from google.api_core import gapic_v1, path_template, rest_helpers, rest_streaming
@@ -384,7 +384,7 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("CreateJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -479,7 +479,7 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("CreateJobTemplate")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {
             "jobTemplateId": "",
         }
 
@@ -580,7 +580,7 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("DeleteJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -654,7 +654,7 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("DeleteJobTemplate")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -732,7 +732,7 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("GetJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -818,7 +818,7 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("GetJobTemplate")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -908,7 +908,7 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("ListJobs")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -997,7 +997,7 @@ class TranscoderServiceRestTransport(TranscoderServiceTransport):
         def __hash__(self):
             return hash("ListJobTemplates")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
