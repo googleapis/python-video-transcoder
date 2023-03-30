@@ -99,7 +99,7 @@ def test_bucket():
     bucket = storage_client.create_bucket(output_bucket_name)
 
     yield bucket
-    # bucket.delete(force=True)
+    bucket.delete(force=True)
 
 
 def test_create_job_from_preset(capsys, test_bucket):
